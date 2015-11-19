@@ -21,9 +21,9 @@ object Transformation01 {
       val (h, w) = (canvas.height, canvas.width)
 
       val allPaintedBlue = initialFigure
-        .map { cube =>
-          if (cube.color == magenta) Square(blue, cube.x, cube.y)
-          else cube }
+        .map { square =>
+          if (square.color == magenta) Square(blue, square.x, square.y)
+          else square }
       draw(allPaintedBlue, 0, 0)
     }
 
