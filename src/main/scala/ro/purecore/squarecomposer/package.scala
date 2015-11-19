@@ -30,13 +30,12 @@ package object squarecomposer {
 
   object Effects {
     def draw
-      (squares: List[Square], dx: Int, dy: Int)
+      (squares: List[Square], dx: Int, dy: Int, s: Int = 30, strokeStyle: String = "3px #333333")
       (implicit ctx: dom.CanvasRenderingContext2D)
     : Unit = {
 
-      val s = 30
       for(square <- squares.reverse) {
-        ctx.strokeStyle = "3px #333333"
+        ctx.strokeStyle = strokeStyle
         ctx.strokeRect(square.x * s + dx, square.y * s + dy, s, s)
 
         ctx.fillStyle = square.color

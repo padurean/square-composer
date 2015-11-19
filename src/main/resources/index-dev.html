@@ -14,6 +14,8 @@
             text-align: left;
             padding-left: 2.5rem;
         }
+        header { color: #666; }
+        header > h3 { font-weight: normal; }
         footer { margin-top: 5.5rem; color: #666; font-size: 0.85rem; }
         footer a { color: #999; }
         footer a#purecore-footer-link { margin-left: .35rem; color: #008b8b; font-family: "Merriweather", "PT Serif", Georgia, "Times New Roman", serif; }
@@ -23,7 +25,7 @@
         div#main > div > div { display: inline-block; vertical-align: top; margin: .5rem 0; }
         div.snippet { width: auto; border: dashed 2px #222; overflow: auto; margin-top: .5rem; }
         canvas { display: inline-block; border: dashed 2px #222; margin-top: .5rem; }
-        a { text-decoration: none; color: #fff; }
+        a { text-decoration: none; color: #999; }
         span.purecore-logotype-small {
             background-color: #333;
             color: #20b2aa;
@@ -35,8 +37,13 @@
 </head>
 <body>
 <header>
-    <h2 style="margin-bottom: 0;"><span style="color: #3399cc;">Square</span><span style="color: #cd00cd;">Composer</span></h2>
-    <h3 style="margin-top: 0;"><a href="http://scala-lang.org">Scala</a> solutions</h3>
+    <h2 style="margin-bottom: 0;">
+        <canvas id="squarecomposer-logotype" width="24" height="24" style="display: inline-block; margin: 0; border: none; vertical-align: top;"></canvas>
+        <span style="color: #3399cc; vertical-align: top;">Square</span><span style="color: #cd00cd; vertical-align: top;">Composer</span></h2>
+    <h3 style="margin-top: .5rem;">
+        <a href="http://scala-lang.org">Scala</a> solutions for
+        <a href="http://david-peter.de/cube-composer" target="_blank"> CubeComposer</a>
+    </h3>
 </header>
 <div id="main">
 
@@ -151,13 +158,14 @@
         Made by <a href="http://purecore.ro" id="purecore-footer-link"><span class="purecore-logotype-small">&Lambda;</span> PureCore.ro</a><br/><br/>
         Based on <a href="http://david-peter.de" target="_blank">David Peter</a>'s <a href="http://david-peter.de/cube-composer" target="_blank"><span style="color: #bbb; background-color: #ab3612; padding: 0 .2rem;">cube</span><span style="color: #bbb; background-color: #473128; padding: 0 .2rem;">composer</span></a><br/><br/>
         Uses <a href="https://github.com/lihaoyi" target="_blank">Lihaoyi</a>'s <a href="http://www.scala-js.org" target="_blank" style="color: #af9723;">ScalaJS</a> <a href="http://scala-js.github.io/scala-js-dom" target="_blank" style="color: #0044dd;">DOM</a> &amp; <a href="https://github.com/lihaoyi/workbench" target="_blank" style="color: #a300a3;">Workbench</a> <a href="https://github.com/lihaoyi/workbench-example-app" target="_blank">Example App</a><br/><br/>
-        Source code on <a href="https://github.com/padurean/padurean.github.io" target="_blank">GitHub</a>
+        Source code on <a href="https://github.com/padurean/square-composer" target="_blank">GitHub</a>
     </p>
 </footer>
 
 <script type="text/javascript" src="../squarecomposer-fastopt.js"></script>
 <script type="text/javascript" src="/workbench.js"></script>
 <script>
+ro.purecore.squarecomposer.Logo().main(document.getElementById('squarecomposer-logotype'));
 ro.purecore.squarecomposer.InitialFigure().main(document.getElementById('initial-figure-1'));
 ro.purecore.squarecomposer.Transformation01().main(document.getElementById('transformation-1'));
 ro.purecore.squarecomposer.InitialFigure().main(document.getElementById('initial-figure-2'));
