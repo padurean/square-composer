@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Example Scala.js application</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body style="margin: 0; background-color: #222;">
+
+<div>
+    <span>Initial figure</span>
+    <canvas style="display: block" id="initial-figure" width="400" height="300"></canvas>
+</div>
+<div>
+    <span>0.1 Transformation (Easy)</span>
+    <canvas style="display: block" id="transfomation-1" width="400" height="300"></canvas>
+</div>
+<div>
+    <span>0.2 Rejection (Easy)</span>
+    <canvas style="display: block" id="rejection-2" width="400" height="300"></canvas>
+</div>
+
+<script type="text/javascript" src="../squarecomposer-opt.js"></script>
+<script>
+ro.purecore.squarecomposer.InitialFigure().main(document.getElementById('initial-figure'));
+ro.purecore.squarecomposer.Transformation01().main(document.getElementById('transformation-1'));
+ro.purecore.squarecomposer.Rejection02().main(document.getElementById('rejection-2'));
+</script>
+</body>
+</html>

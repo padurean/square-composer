@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SquareComposer - Scala solutions</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="user-scalable=no, width=device-width,
+    initial-scale=0.5, minimum-scale=0.5, maximum-scale=0.5" />
+    <style>
+        body { margin: 0; background-color: #000; color: #ccc; font-family: 'Arial Narrow', sans-serif; }
+        header, div#main, footer {
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: left;
+            padding-left: 2.5rem;
+        }
+        footer { margin-top: 5.5rem; color: #666; font-size: 0.85rem; }
+        footer a { color: #999; }
+        footer a#purecore-footer-link { margin-left: .35rem; color: #008b8b; font-family: "Merriweather", "PT Serif", Georgia, "Times New Roman", serif; }
+        div#main > div.item { margin-top: 3.5rem; margin-bottom: 1.5rem; }
+        div#main > div.item > div > span { color: #666; font-size: 0.85rem; }
+        div#main > div > h4 { padding: .5rem 0; border-bottom: dashed 2px #222; margin-bottom: .5rem; }
+        div#main > div > div { display: inline-block; vertical-align: top; margin: .5rem 0; }
+        div.snippet { width: auto; border: dashed 2px #222; overflow: auto; margin-top: .5rem; }
+        canvas { display: inline-block; border: dashed 2px #222; margin-top: .5rem; }
+        a { text-decoration: none; color: #fff; }
+        span.purecore-logotype-small {
+            background-color: #333;
+            color: #20b2aa;
+            font-size: 1rem;
+            padding-left: 0.25em;
+            padding-right: 0.25em; }
+        span.pipe { margin: 0 .75rem; }
+    </style>
+</head>
+<body>
+<header>
+    <h2 style="margin-bottom: 0;"><span style="color: #3399cc;">Square</span><span style="color: #cd00cd;">Composer</span></h2>
+    <h3 style="margin-top: 0;"><a href="http://scala-lang.org">Scala</a> solutions</h3>
+</header>
+<div id="main">
+
+    <div class="item">
+        <h4>0.0 Common Code</h4>
+        <div>
+            <span>Data Model &#8628;</span><br/>
+            <!-- HTML generated using hilite.me -->
+            <div class="snippet" style="background: #000000; color: #999;"><table><tr><td><pre style="margin: 0; line-height: 125%"> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></td><td><pre style="margin: 0; line-height: 125%"><span style="color: #cdcd00">type</span> <span style="color: #00cd00">Color</span> <span style="color: #3399cc">=</span> <span style="color: #00cdcd">String</span>
+
+<span style="color: #cdcd00">val</span> <span style="color: #cccccc">blue</span><span style="color: #cdcd00">:</span> <span style="color: #00cd00">Color</span> <span style="color: #3399cc">=</span> <span style="color: #cd0000">&quot;#3399cc&quot;</span>
+<span style="color: #cdcd00">val</span> <span style="color: #cccccc">magenta</span><span style="color: #cdcd00">:</span> <span style="color: #00cd00">Color</span> <span style="color: #3399cc">=</span> <span style="color: #cd0000">&quot;#cd00cd&quot;</span>
+
+<span style="color: #cdcd00">case</span> <span style="color: #cdcd00">class</span> <span style="color: #00cdcd">Square</span><span style="color: #3399cc">(</span><span style="color: #cccccc">color</span><span style="color: #cdcd00">:</span> <span style="color: #00cd00">Color</span><span style="color: #3399cc">,</span> <span style="color: #cccccc">x</span><span style="color: #cdcd00">:</span> <span style="color: #00cd00">Int</span><span style="color: #3399cc">,</span> <span style="color: #cccccc">y</span><span style="color: #cdcd00">:</span> <span style="color: #00cd00">Int</span><span style="color: #3399cc">)</span>
+
+<span style="color: #cdcd00">val</span> <span style="color: #cccccc">initialFigure</span> <span style="color: #cdcd00">=</span> <span style="color: #00cdcd">List</span><span style="color: #3399cc">(</span>
+  <span style="color: #00cdcd">Square</span><span style="color: #3399cc">(</span><span style="color: #cccccc">magenta</span><span style="color: #3399cc">,</span> <span style="color: #cd00cd">0</span><span style="color: #3399cc">,</span> <span style="color: #cd00cd">2</span><span style="color: #3399cc">),</span> <span style="color: #00cdcd">Square</span><span style="color: #3399cc">(</span><span style="color: #cccccc">magenta</span><span style="color: #3399cc">,</span> <span style="color: #cd00cd">1</span><span style="color: #3399cc">,</span> <span style="color: #cd00cd">2</span><span style="color: #3399cc">),</span> <span style="color: #00cdcd">Square</span><span style="color: #3399cc">(</span><span style="color: #cccccc">blue</span><span style="color: #3399cc">,</span> <span style="color: #cd00cd">2</span><span style="color: #3399cc">,</span> <span style="color: #cd00cd">2</span><span style="color: #3399cc">),</span> <span style="color: #00cdcd">Square</span><span style="color: #3399cc">(</span><span style="color: #cccccc">blue</span><span style="color: #3399cc">,</span> <span style="color: #cd00cd">3</span><span style="color: #3399cc">,</span> <span style="color: #cd00cd">2</span><span style="color: #3399cc">),</span> <span style="color: #00cdcd">Square</span><span style="color: #3399cc">(</span><span style="color: #cccccc">magenta</span><span style="color: #3399cc">,</span> <span style="color: #cd00cd">4</span><span style="color: #3399cc">,</span> <span style="color: #cd00cd">2</span><span style="color: #3399cc">),</span> <span style="color: #00cdcd">Square</span><span style="color: #3399cc">(</span><span style="color: #cccccc">magenta</span><span style="color: #3399cc">,</span> <span style="color: #cd00cd">5</span><span style="color: #3399cc">,</span> <span style="color: #cd00cd">2</span><span style="color: #3399cc">),</span>
+  <span style="color: #00cdcd">Square</span><span style="color: #3399cc">(</span><span style="color: #cccccc">magenta</span><span style="color: #3399cc">,</span> <span style="color: #cd00cd">0</span><span style="color: #3399cc">,</span> <span style="color: #cd00cd">1</span><span style="color: #3399cc">),</span> <span style="color: #00cdcd">Square</span><span style="color: #3399cc">(</span><span style="color: #cccccc">blue</span><span style="color: #3399cc">,</span>    <span style="color: #cd00cd">1</span><span style="color: #3399cc">,</span> <span style="color: #cd00cd">1</span><span style="color: #3399cc">),</span>                                         <span style="color: #00cdcd">Square</span><span style="color: #3399cc">(</span><span style="color: #cccccc">blue</span><span style="color: #3399cc">,</span>    <span style="color: #cd00cd">4</span><span style="color: #3399cc">,</span> <span style="color: #cd00cd">1</span><span style="color: #3399cc">),</span> <span style="color: #00cdcd">Square</span><span style="color: #3399cc">(</span><span style="color: #cccccc">magenta</span><span style="color: #3399cc">,</span> <span style="color: #cd00cd">5</span><span style="color: #3399cc">,</span> <span style="color: #cd00cd">1</span><span style="color: #3399cc">),</span>
+  <span style="color: #00cdcd">Square</span><span style="color: #3399cc">(</span><span style="color: #cccccc">blue</span><span style="color: #3399cc">,</span>    <span style="color: #cd00cd">0</span><span style="color: #3399cc">,</span> <span style="color: #cd00cd">0</span><span style="color: #3399cc">),</span>                                                                                       <span style="color: #00cdcd">Square</span><span style="color: #3399cc">(</span><span style="color: #cccccc">blue</span>   <span style="color: #3399cc">,</span> <span style="color: #cd00cd">5</span><span style="color: #3399cc">,</span> <span style="color: #cd00cd">0</span><span style="color: #3399cc">))</span>
+</pre></td></tr></table>
+            </div>
+        </div>
+
+        <div>
+            <span>Functions &#8628;</span><br/>
+            <!-- HTML generated using hilite.me -->
+            <div class="snippet" style="background: #000000; color: #999;"><table><tr><td><pre style="margin: 0; line-height: 125%"> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></td><td><pre style="margin: 0; line-height: 125%"><span style="color: #cdcd00">def</span> <span style="color: #cccccc">applyGravity</span><span style="color: #3399cc">(</span><span style="color: #cccccc">squares</span><span style="color: #cdcd00">:</span> <span style="color: #00cd00">List</span><span style="color: #3399cc">[</span><span style="color: #00cd00">Square</span><span style="color: #3399cc">])</span> <span style="color: #cdcd00">=</span> <span style="color: #3399cc">{</span>
+  <span style="color: #cdcd00">val</span> <span style="color: #cccccc">maxY</span> <span style="color: #cdcd00">=</span> <span style="color: #cccccc">squares</span><span style="color: #3399cc">.</span><span style="color: #cccccc">maxBy</span><span style="color: #3399cc">(</span><span style="color: #cdcd00">_</span><span style="color: #3399cc">.</span><span style="color: #cccccc">y</span><span style="color: #3399cc">).</span><span style="color: #cccccc">y</span>
+  <span style="color: #cccccc">squares</span>
+    <span style="color: #3399cc">.</span><span style="color: #cccccc">groupBy</span><span style="color: #3399cc">(</span><span style="color: #cdcd00">_</span><span style="color: #3399cc">.</span><span style="color: #cccccc">x</span><span style="color: #3399cc">)</span>
+    <span style="color: #3399cc">.</span><span style="color: #cccccc">flatMap</span> <span style="color: #3399cc">{</span> <span style="color: #cdcd00">case</span> <span style="color: #3399cc">(</span><span style="color: #cccccc">x</span><span style="color: #3399cc">,</span> <span style="color: #cccccc">havingSameX</span><span style="color: #3399cc">)</span> <span style="color: #cdcd00">=&gt;</span>
+      <span style="color: #cdcd00">val</span> <span style="color: #cccccc">sortedByY</span> <span style="color: #cdcd00">=</span> <span style="color: #cccccc">havingSameX</span><span style="color: #3399cc">.</span><span style="color: #cccccc">sortBy</span><span style="color: #3399cc">(</span><span style="color: #cdcd00">_</span><span style="color: #3399cc">.</span><span style="color: #cccccc">y</span><span style="color: #3399cc">)</span>
+      <span style="color: #cdcd00">val</span> <span style="color: #cccccc">currMaxY</span> <span style="color: #cdcd00">=</span> <span style="color: #cccccc">sortedByY</span><span style="color: #3399cc">.</span><span style="color: #cccccc">last</span><span style="color: #3399cc">.</span><span style="color: #cccccc">y</span>
+      <span style="color: #cdcd00">for</span> <span style="color: #3399cc">(</span><span style="color: #cccccc">i</span> <span style="color: #cdcd00">&lt;-</span> <span style="color: #cccccc">sortedByY</span><span style="color: #3399cc">.</span><span style="color: #cccccc">indices</span><span style="color: #3399cc">)</span> <span style="color: #cdcd00">yield</span> <span style="color: #3399cc">{</span>
+        <span style="color: #cdcd00">val</span> <span style="color: #cccccc">square</span> <span style="color: #cdcd00">=</span> <span style="color: #cccccc">sortedByY</span><span style="color: #3399cc">(</span><span style="color: #cccccc">i</span><span style="color: #3399cc">)</span>
+        <span style="color: #00cdcd">Square</span><span style="color: #3399cc">(</span><span style="color: #cccccc">square</span><span style="color: #3399cc">.</span><span style="color: #cccccc">color</span><span style="color: #3399cc">,</span> <span style="color: #cccccc">square</span><span style="color: #3399cc">.</span><span style="color: #cccccc">x</span><span style="color: #3399cc">,</span> <span style="color: #cccccc">square</span><span style="color: #3399cc">.</span><span style="color: #cccccc">y</span> <span style="color: #3399cc">+</span> <span style="color: #3399cc">(</span><span style="color: #cccccc">maxY</span> <span style="color: #3399cc">-</span> <span style="color: #cccccc">currMaxY</span><span style="color: #3399cc">))</span> <span style="color: #3399cc">}</span> <span style="color: #3399cc">}</span>
+    <span style="color: #3399cc">.</span><span style="color: #cccccc">toList</span> <span style="color: #3399cc">}</span>
+</pre></td></tr></table>
+            </div>
+        </div>
+    </div>
+
+    <div class="item">
+        <h4>0.1 Transformation (Easy)</h4>
+        <div>
+            <span>Input &#8625;</span><br/>
+            <canvas id="initial-figure-1" width="180" height="90"></canvas>
+        </div>
+        <div>
+            <span>Transformation &#8674;</span><br/>
+            <!-- HTML generated using hilite.me -->
+            <div class="snippet" style="background: #000000; color: #999;"><table><tr><td><pre style="margin: 0; line-height: 125%">1
+2
+3</pre></td><td><pre style="margin: 0; line-height: 125%"><span style="color: #cccccc">initialFigure</span><span style="color: #3399cc">.</span><span style="color: #cccccc">map</span> <span style="color: #3399cc">{</span> <span style="color: #cccccc">cube</span> <span style="color: #cdcd00">=&gt;</span>
+  <span style="color: #cdcd00">if</span> <span style="color: #3399cc">(</span><span style="color: #cccccc">cube</span><span style="color: #3399cc">.</span><span style="color: #cccccc">color</span> <span style="color: #3399cc">==</span> <span style="color: #cccccc">magenta</span><span style="color: #3399cc">)</span> <span style="color: #00cdcd">Square</span><span style="color: #3399cc">(</span><span style="color: #cccccc">blue</span><span style="color: #3399cc">,</span> <span style="color: #cccccc">cube</span><span style="color: #3399cc">.</span><span style="color: #cccccc">x</span><span style="color: #3399cc">,</span> <span style="color: #cccccc">cube</span><span style="color: #3399cc">.</span><span style="color: #cccccc">y</span><span style="color: #3399cc">)</span>
+  <span style="color: #cdcd00">else</span> <span style="color: #cccccc">cube</span> <span style="color: #3399cc">}</span>
+</pre></td></tr></table>
+            </div>
+        </div>
+        <div>
+            <span>Output &#8628;</span><br/>
+            <canvas id="transformation-1" width="180" height="90"></canvas>
+        </div>
+    </div>
+
+    <div class="item">
+        <h4>0.2 Rejection (Easy)</h4>
+        <div>
+            <span>Input &#8625;</span><br/>
+            <canvas id="initial-figure-2" width="180" height="90"></canvas>
+        </div>
+        <div>
+            <span>Transformation &#8674;</span><br/>
+            <!-- HTML generated using hilite.me -->
+            <div class="snippet" style="background: #000000; color: #999;"><table><tr><td><pre style="margin: 0; line-height: 125%">1
+2
+3</pre></td><td><pre style="margin: 0; line-height: 125%"><span style="color: #cccccc">applyGravity</span><span style="color: #3399cc">(</span><span style="color: #cccccc">initialFigure</span><span style="color: #3399cc">.</span><span style="color: #cccccc">filterNot</span><span style="color: #3399cc">(</span><span style="color: #cdcd00">_</span><span style="color: #3399cc">.</span><span style="color: #cccccc">color</span> <span style="color: #3399cc">==</span> <span style="color: #cccccc">magenta</span><span style="color: #3399cc">))</span>
+<span style="color: #555">// OR:</span>
+<span style="color: #cccccc">applyGravity</span><span style="color: #3399cc">(</span><span style="color: #cccccc">initialFigure</span><span style="color: #3399cc">.</span><span style="color: #cccccc">filter</span><span style="color: #3399cc">(</span><span style="color: #cdcd00">_</span><span style="color: #3399cc">.</span><span style="color: #cccccc">color</span> <span style="color: #3399cc">==</span> <span style="color: #cccccc">blue</span><span style="color: #3399cc">))</span>
+</pre></td></tr></table>
+            </div>
+        </div>
+        <div>
+            <span>Output &#8628;</span><br/>
+            <canvas id="transformation-2" width="180" height="90"></canvas>
+        </div>
+    </div>
+
+</div>
+<footer>
+    <p>
+        Made by <a href="http://purecore.ro" id="purecore-footer-link"><span class="purecore-logotype-small">&Lambda;</span> PureCore.ro</a><br/><br/>
+        Based on <a href="http://david-peter.de" target="_blank">David Peter</a>'s <a href="http://david-peter.de/cube-composer" target="_blank"><span style="color: #bbb; background-color: #ab3612; padding: 0 .2rem;">cube</span><span style="color: #bbb; background-color: #473128; padding: 0 .2rem;">composer</span></a><br/><br/>
+        Uses <a href="https://github.com/lihaoyi" target="_blank">Lihaoyi</a>'s <a href="http://www.scala-js.org" target="_blank" style="color: #af9723;">ScalaJS</a> <a href="http://scala-js.github.io/scala-js-dom" target="_blank" style="color: #0044dd;">DOM</a> &amp; <a href="https://github.com/lihaoyi/workbench" target="_blank" style="color: #a300a3;">Workbench</a> <a href="https://github.com/lihaoyi/workbench-example-app" target="_blank">Example App</a><br/><br/>
+        Source code on <a href="https://github.com/padurean/padurean.github.io" target="_blank">GitHub</a>
+    </p>
+</footer>
+
+<script type="text/javascript" src="../squarecomposer-fastopt.js"></script>
+<script type="text/javascript" src="/workbench.js"></script>
+<script>
+ro.purecore.squarecomposer.InitialFigure().main(document.getElementById('initial-figure-1'));
+ro.purecore.squarecomposer.Transformation01().main(document.getElementById('transformation-1'));
+ro.purecore.squarecomposer.InitialFigure().main(document.getElementById('initial-figure-2'));
+ro.purecore.squarecomposer.Transformation02().main(document.getElementById('transformation-2'));
+</script>
+</body>
+</html>
