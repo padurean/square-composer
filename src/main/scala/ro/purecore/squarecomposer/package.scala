@@ -26,17 +26,19 @@ package object squarecomposer {
           for (i <- sortedByY.indices) yield {
             val square = sortedByY(i)
             square.copy(y = square.y + (maxY - currMaxY)) } }
-        .toList
-    }
+        .toList }
 
     def stack(color: Color, squares: List[Square]): List[Square] = {
-      val has0y = squares.exists(_.y <= 0)
+      val minY = squares.minBy(_.y).y
       val squs =
-        if (has0y) squares.map(s => s.copy(y = s.y + 1))
+        // if lowest square is on or below y=0, shift all up so that lowest is at y=1
+        // so that there is room to "stack" a row below (remember y grows downwards)
+        if (minY <= 0) {
+          val deltaY = -minY + 1
+          squares.map(s => s.copy(y = s.y + deltaY)) }
         else squares
       val stacked = squs.map(s => s.copy(color = color, y = s.y - 1))
-      stacked ++ squares
-    }
+      stacked ++ squares }
   }
 
   object Effects {
@@ -50,9 +52,7 @@ package object squarecomposer {
         ctx.strokeRect(square.x * s + dx, square.y * s + dy, s, s)
 
         ctx.fillStyle = square.color
-        ctx.fillRect(square.x * s + dx, square.y * s + dy, s, s)
-      }
-    }
+        ctx.fillRect(square.x * s + dx, square.y * s + dy, s, s) } }
 
     def fillText
       (text: String, x: Double, y: Double)
@@ -60,12 +60,10 @@ package object squarecomposer {
     : Unit = {
       ctx.fillStyle = "#494949"
       ctx.font = "16px sans-serif"
-      ctx.fillText(text, x, y)
-    }
+      ctx.fillText(text, x, y) }
 
     def clear(implicit ctx: dom.CanvasRenderingContext2D): Unit = {
       ctx.fillStyle = "black"
-      ctx.fillRect(0, 0, 255, 255)
-    }
+      ctx.fillRect(0, 0, 255, 255) }
   }
 }

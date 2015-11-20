@@ -20,12 +20,9 @@ object Transformation03 {
 
     def run() = {
       val (h, w) = (canvas.height, canvas.width)
-
       val composition =
         stack(magenta, applyGravity(initialFigure.filter(_.color == blue)))
-      draw(composition, 0, 0)
-    }
+      draw(composition, 0, 0) }
 
-    dom.setInterval(() => run(), 50)
-  }
+    dom.setInterval(() => run(), 50) }
 }

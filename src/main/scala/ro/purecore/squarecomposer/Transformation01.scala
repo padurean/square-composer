@@ -19,14 +19,11 @@ object Transformation01 {
 
     def run() = {
       val (h, w) = (canvas.height, canvas.width)
-
       val allPaintedBlue = initialFigure
         .map { square =>
           if (square.color == magenta) square.copy(color = blue)
           else square }
-      draw(allPaintedBlue, 0, 0)
-    }
+      draw(allPaintedBlue, 0, 0) }
 
-    dom.setInterval(() => run(), 50)
-  }
+    dom.setInterval(() => run(), 50) }
 }

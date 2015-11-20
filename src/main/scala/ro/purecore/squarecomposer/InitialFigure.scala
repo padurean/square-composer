@@ -23,9 +23,7 @@ object InitialFigure {
 
     def run() = {
       val (h, w) = (canvas.height, canvas.width)
-      draw(initialFigure, 0, 0)
-    }
+      draw(initialFigure, 0, 0) }
 
-    dom.setInterval(() => run(), 50)
-  }
+    dom.setInterval(() => run(), 50) }
 }

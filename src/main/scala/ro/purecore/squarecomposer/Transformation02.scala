@@ -20,12 +20,9 @@ object Transformation02 {
 
     def run() = {
       val (h, w) = (canvas.height, canvas.width)
-
       val onlyBlues =
         applyGravity(initialFigure.filter(_.color == blue))
-      draw(onlyBlues, 0, 0)
-    }
+      draw(onlyBlues, 0, 0) }
 
-    dom.setInterval(() => run(), 50)
-  }
+    dom.setInterval(() => run(), 50) }
 }

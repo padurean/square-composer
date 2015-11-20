@@ -22,9 +22,7 @@ object Logo {
 
     def run() = {
       val (h, w) = (canvas.height, canvas.width)
-      draw(logotype, 0, 0, canvas.width/2, "0px")
-    }
+      draw(logotype, 0, 0, canvas.width/2, "0px") }
 
-    dom.setInterval(() => run(), 50)
-  }
+    dom.setInterval(() => run(), 50) }
 }
