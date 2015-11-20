@@ -1,6 +1,9 @@
 package ro.purecore
 
 import org.scalajs.dom
+import org.scalajs.dom.{CanvasRenderingContext2D, html}
+
+import scala.language.implicitConversions
 
 package object squarecomposer {
 
@@ -11,12 +14,23 @@ package object squarecomposer {
 
   case class Square(color: Color, x: Int, y: Int)
 
-  // Think upside down, as 0, 0 means top-left corner of the screen,
-  // so X grows to right, as expected, but Y grows down, as not-expected :)
-  // hence your perceived "up", is actually "down" in computations :P
-  object Transformations {
+  implicit def richCanvas(canvas: html.Canvas): RichCanvas =
+    new RichCanvas(canvas)
 
-    def applyGravity(squares: List[Square]): List[Square] = {
+  implicit def richListOfSquares(squares: List[Square]): Transformations =
+    new Transformations(squares)
+
+  class RichCanvas(val canvas: html.Canvas) extends AnyVal {
+    def getContext2D: CanvasRenderingContext2D =
+      canvas.getContext("2d").asInstanceOf[dom.CanvasRenderingContext2D]
+  }
+
+  // Think upside down, as 0, 0 means top-left corner of the screen,
+  // so X grows to right, as expected, but Y grows downwards, as not-expected :)
+  // hence your perceived "up", is actually "down" in computations :P
+  class Transformations(val squares: List[Square]) extends AnyVal {
+
+    def applyGravity: List[Square] = {
       val maxY = squares.maxBy(_.y).y
       squares
         .groupBy(_.x)
@@ -28,7 +42,7 @@ package object squarecomposer {
             square.copy(y = square.y + (maxY - currMaxY)) } }
         .toList }
 
-    def stack(color: Color, squares: List[Square]): List[Square] = {
+    def stack(color: Color): List[Square] = {
       val minY = squares.minBy(_.y).y
       val liftedSquares =
         // if lowest square is on or below y=0, shift all up so that lowest is at y=1
@@ -66,4 +80,6 @@ package object squarecomposer {
       ctx.fillStyle = "black"
       ctx.fillRect(0, 0, 255, 255) }
   }
+
+
 }

@@ -17,13 +17,7 @@ object InitialFigure {
 
   @JSExport
   def main(canvas: html.Canvas): Unit = {
-    implicit val ctx = canvas
-      .getContext("2d")
-      .asInstanceOf[dom.CanvasRenderingContext2D]
-
-    def run() = {
-      val (h, w) = (canvas.height, canvas.width)
-      draw(initialFigure, 0, 0) }
-
+    implicit val ctx = canvas.getContext2D
+    def run() = draw(initialFigure, 0, 0)
     dom.setInterval(() => run(), 50) }
 }

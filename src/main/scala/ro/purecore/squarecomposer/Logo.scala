@@ -16,13 +16,7 @@ object Logo {
 
   @JSExport
   def main(canvas: html.Canvas): Unit = {
-    implicit val ctx = canvas
-      .getContext("2d")
-      .asInstanceOf[dom.CanvasRenderingContext2D]
-
-    def run() = {
-      val (h, w) = (canvas.height, canvas.width)
-      draw(logotype, 0, 0, canvas.width/2, "0px") }
-
+    implicit val ctx = canvas.getContext2D
+    def run() = draw(logotype, 0, 0, canvas.width/2, "0px")
     dom.setInterval(() => run(), 50) }
 }
