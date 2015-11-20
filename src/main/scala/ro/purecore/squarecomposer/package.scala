@@ -30,14 +30,14 @@ package object squarecomposer {
 
     def stack(color: Color, squares: List[Square]): List[Square] = {
       val minY = squares.minBy(_.y).y
-      val squs =
+      val liftedSquares =
         // if lowest square is on or below y=0, shift all up so that lowest is at y=1
         // so that there is room to "stack" a row below (remember y grows downwards)
         if (minY <= 0) {
           val deltaY = -minY + 1
           squares.map(s => s.copy(y = s.y + deltaY)) }
         else squares
-      val stacked = squs.map(s => s.copy(color = color, y = s.y - 1))
+      val stacked = liftedSquares.map(s => s.copy(color = color, y = s.y - 1))
       stacked ++ squares }
   }
 

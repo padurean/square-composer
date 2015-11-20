@@ -34,6 +34,23 @@
             padding-right: 0.25em; }
         span.pipe { margin: 0 .75rem; }
     </style>
+    <link rel="apple-touch-icon" sizes="57x57" href="apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="msapplication-TileColor" content="#333333">
+    <meta name="msapplication-TileImage" content="ms-icon-144x144.png">
+    <meta name="theme-color" content="#333333">
 </head>
 <body>
 <header>
@@ -118,14 +135,14 @@
 
 <span style="color: #cdcd00">def</span> <span style="color: #cccccc">stack</span><span style="color: #3399cc">(</span><span style="color: #cccccc">color</span><span style="color: #cdcd00">:</span> <span style="color: #00cd00">Color</span><span style="color: #3399cc">,</span> <span style="color: #cccccc">squares</span><span style="color: #cdcd00">:</span> <span style="color: #00cd00">List</span><span style="color: #3399cc">[</span><span style="color: #00cd00">Square</span><span style="color: #3399cc">])</span><span style="color: #cdcd00">:</span> <span style="color: #00cd00">List</span><span style="color: #3399cc">[</span><span style="color: #00cd00">Square</span><span style="color: #3399cc">]</span> <span style="color: #cdcd00">=</span> <span style="color: #3399cc">{</span>
   <span style="color: #cdcd00">val</span> <span style="color: #cccccc">minY</span> <span style="color: #cdcd00">=</span> <span style="color: #cccccc">squares</span><span style="color: #3399cc">.</span><span style="color: #cccccc">minBy</span><span style="color: #3399cc">(</span><span style="color: #cdcd00">_</span><span style="color: #3399cc">.</span><span style="color: #cccccc">y</span><span style="color: #3399cc">).</span><span style="color: #cccccc">y</span>
-  <span style="color: #cdcd00">val</span> <span style="color: #cccccc">squs</span> <span style="color: #cdcd00">=</span>
+  <span style="color: #cdcd00">val</span> <span style="color: #cccccc">liftedSquares</span> <span style="color: #cdcd00">=</span>
     <span style="color: #555">// if lowest square is on or below y=0, shift all up so that lowest is at y=1</span>
     <span style="color: #555">// so that there is room to &quot;stack&quot; a row below (remember y grows downwards)</span>
     <span style="color: #cdcd00">if</span> <span style="color: #3399cc">(</span><span style="color: #cccccc">minY</span> <span style="color: #3399cc">&lt;=</span> <span style="color: #cd00cd">0</span><span style="color: #3399cc">)</span> <span style="color: #3399cc">{</span>
       <span style="color: #cdcd00">val</span> <span style="color: #cccccc">deltaY</span> <span style="color: #cdcd00">=</span> <span style="color: #3399cc">-</span><span style="color: #cccccc">minY</span> <span style="color: #3399cc">+</span> <span style="color: #cd00cd">1</span>
       <span style="color: #cccccc">squares</span><span style="color: #3399cc">.</span><span style="color: #cccccc">map</span><span style="color: #3399cc">(</span><span style="color: #cccccc">s</span> <span style="color: #cdcd00">=&gt;</span> <span style="color: #cccccc">s</span><span style="color: #3399cc">.</span><span style="color: #cccccc">copy</span><span style="color: #3399cc">(</span><span style="color: #cccccc">y</span> <span style="color: #cdcd00">=</span> <span style="color: #cccccc">s</span><span style="color: #3399cc">.</span><span style="color: #cccccc">y</span> <span style="color: #3399cc">+</span> <span style="color: #cccccc">deltaY</span><span style="color: #3399cc">))</span> <span style="color: #3399cc">}</span>
     <span style="color: #cdcd00">else</span> <span style="color: #cccccc">squares</span>
-  <span style="color: #cdcd00">val</span> <span style="color: #cccccc">stacked</span> <span style="color: #cdcd00">=</span> <span style="color: #cccccc">squs</span><span style="color: #3399cc">.</span><span style="color: #cccccc">map</span><span style="color: #3399cc">(</span><span style="color: #cccccc">s</span> <span style="color: #cdcd00">=&gt;</span> <span style="color: #cccccc">s</span><span style="color: #3399cc">.</span><span style="color: #cccccc">copy</span><span style="color: #3399cc">(</span><span style="color: #cccccc">color</span> <span style="color: #cdcd00">=</span> <span style="color: #cccccc">color</span><span style="color: #3399cc">,</span> <span style="color: #cccccc">y</span> <span style="color: #cdcd00">=</span> <span style="color: #cccccc">s</span><span style="color: #3399cc">.</span><span style="color: #cccccc">y</span> <span style="color: #3399cc">-</span> <span style="color: #cd00cd">1</span><span style="color: #3399cc">))</span>
+  <span style="color: #cdcd00">val</span> <span style="color: #cccccc">stacked</span> <span style="color: #cdcd00">=</span> <span style="color: #cccccc">liftedSquares</span><span style="color: #3399cc">.</span><span style="color: #cccccc">map</span><span style="color: #3399cc">(</span><span style="color: #cccccc">s</span> <span style="color: #cdcd00">=&gt;</span> <span style="color: #cccccc">s</span><span style="color: #3399cc">.</span><span style="color: #cccccc">copy</span><span style="color: #3399cc">(</span><span style="color: #cccccc">color</span> <span style="color: #cdcd00">=</span> <span style="color: #cccccc">color</span><span style="color: #3399cc">,</span> <span style="color: #cccccc">y</span> <span style="color: #cdcd00">=</span> <span style="color: #cccccc">s</span><span style="color: #3399cc">.</span><span style="color: #cccccc">y</span> <span style="color: #3399cc">-</span> <span style="color: #cd00cd">1</span><span style="color: #3399cc">))</span>
   <span style="color: #cccccc">stacked</span> <span style="color: #3399cc">++</span> <span style="color: #cccccc">squares</span> <span style="color: #3399cc">}</span>
 </pre></td></tr></table>
             </div>
@@ -190,7 +207,11 @@
         <div>
             <span>Transformation &#8674;</span><br/>
             <!-- HTML generated using hilite.me -->
-            <div class="snippet" style="background: #000000; color: #999;"><table><tr><td><pre style="margin: 0; line-height: 125%">1</pre></td><td><pre style="margin: 0; line-height: 125%"><span style="color: #cccccc">stack</span><span style="color: #3399cc">(</span><span style="color: #cccccc">magenta</span><span style="color: #3399cc">,</span> <span style="color: #cccccc">applyGravity</span><span style="color: #3399cc">(</span><span style="color: #cccccc">initialFigure</span><span style="color: #3399cc">.</span><span style="color: #cccccc">filter</span><span style="color: #3399cc">(</span><span style="color: #cdcd00">_</span><span style="color: #3399cc">.</span><span style="color: #cccccc">color</span> <span style="color: #3399cc">==</span> <span style="color: #cccccc">blue</span><span style="color: #3399cc">)))</span>
+            <div class="snippet" style="background: #000000; color: #999;"><table><tr><td><pre style="margin: 0; line-height: 125%">1
+2
+3</pre></td><td><pre style="margin: 0; line-height: 125%"><span style="color: #cccccc">stack</span><span style="color: #3399cc">(</span>
+  <span style="color: #cccccc">magenta</span><span style="color: #3399cc">,</span>
+  <span style="color: #cccccc">applyGravity</span><span style="color: #3399cc">(</span><span style="color: #cccccc">initialFigure</span><span style="color: #3399cc">.</span><span style="color: #cccccc">filter</span><span style="color: #3399cc">(</span><span style="color: #cdcd00">_</span><span style="color: #3399cc">.</span><span style="color: #cccccc">color</span> <span style="color: #3399cc">==</span> <span style="color: #cccccc">blue</span><span style="color: #3399cc">)))</span>
 </pre></td></tr></table>
             </div>
         </div>
