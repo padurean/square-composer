@@ -11,8 +11,12 @@ package object squarecomposer {
 
   case class Square(color: Color, x: Int, y: Int)
 
+  // Think upside down, as 0, 0 means top-left corner of the screen,
+  // so X grows to right, as expected, but Y grows down, as not-expected :)
+  // hence your perceived "up", is actually "down" in computations :P
   object Transformations {
-    def applyGravity(squares: List[Square]) = {
+
+    def applyGravity(squares: List[Square]): List[Square] = {
       val maxY = squares.maxBy(_.y).y
       squares
         .groupBy(_.x)
@@ -21,10 +25,17 @@ package object squarecomposer {
           val currMaxY = sortedByY.last.y
           for (i <- sortedByY.indices) yield {
             val square = sortedByY(i)
-            Square(square.color, square.x, square.y + (maxY - currMaxY))
-          }
-        }
+            square.copy(y = square.y + (maxY - currMaxY)) } }
         .toList
+    }
+
+    def stack(color: Color, squares: List[Square]): List[Square] = {
+      val has0y = squares.exists(_.y <= 0)
+      val squs =
+        if (has0y) squares.map(s => s.copy(y = s.y + 1))
+        else squares
+      val stacked = squs.map(s => s.copy(color = color, y = s.y - 1))
+      stacked ++ squares
     }
   }
 

@@ -15,7 +15,7 @@
             padding-left: 2.5rem;
         }
         header { color: #666; }
-        header > h3 { font-weight: normal; }
+        header > h4 { font-weight: normal; }
         footer { margin-top: 5.5rem; color: #666; font-size: 0.85rem; }
         footer a { color: #999; }
         footer a#purecore-footer-link { margin-left: .35rem; color: #008b8b; font-family: "Merriweather", "PT Serif", Georgia, "Times New Roman", serif; }
@@ -40,13 +40,15 @@
     <h2 style="margin-bottom: 0;">
         <canvas id="squarecomposer-logotype" width="24" height="24" style="display: inline-block; margin: 0; border: none; vertical-align: top;"></canvas>
         <span style="color: #3399cc; vertical-align: top;">Square</span><span style="color: #cd00cd; vertical-align: top;">Composer</span></h2>
-    <h3 style="margin-top: .5rem;">
-        <a href="http://scala-lang.org">Scala</a> solutions for
+    <h4 style="margin-top: .5rem;">
+        <a href="http://scala-lang.org">Scala</a> solutions 4
         <a href="http://david-peter.de/cube-composer" target="_blank"> CubeComposer</a>
-    </h3>
+    </h4>
 </header>
+
 <div id="main">
 
+    <!-- 0.0 Common Code -->
     <div class="item">
         <h4>0.0 Common Code</h4>
         <div>
@@ -90,7 +92,17 @@
  8
  9
 10
-11</pre></td><td><pre style="margin: 0; line-height: 125%"><span style="color: #cdcd00">def</span> <span style="color: #cccccc">applyGravity</span><span style="color: #3399cc">(</span><span style="color: #cccccc">squares</span><span style="color: #cdcd00">:</span> <span style="color: #00cd00">List</span><span style="color: #3399cc">[</span><span style="color: #00cd00">Square</span><span style="color: #3399cc">])</span> <span style="color: #cdcd00">=</span> <span style="color: #3399cc">{</span>
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21</pre></td><td><pre style="margin: 0; line-height: 125%"><span style="color: #cdcd00">def</span> <span style="color: #cccccc">applyGravity</span><span style="color: #3399cc">(</span><span style="color: #cccccc">squares</span><span style="color: #cdcd00">:</span> <span style="color: #00cd00">List</span><span style="color: #3399cc">[</span><span style="color: #00cd00">Square</span><span style="color: #3399cc">])</span><span style="color: #cdcd00">:</span> <span style="color: #00cd00">List</span><span style="color: #3399cc">[</span><span style="color: #00cd00">Square</span><span style="color: #3399cc">]</span> <span style="color: #cdcd00">=</span> <span style="color: #3399cc">{</span>
   <span style="color: #cdcd00">val</span> <span style="color: #cccccc">maxY</span> <span style="color: #cdcd00">=</span> <span style="color: #cccccc">squares</span><span style="color: #3399cc">.</span><span style="color: #cccccc">maxBy</span><span style="color: #3399cc">(</span><span style="color: #cdcd00">_</span><span style="color: #3399cc">.</span><span style="color: #cccccc">y</span><span style="color: #3399cc">).</span><span style="color: #cccccc">y</span>
   <span style="color: #cccccc">squares</span>
     <span style="color: #3399cc">.</span><span style="color: #cccccc">groupBy</span><span style="color: #3399cc">(</span><span style="color: #cdcd00">_</span><span style="color: #3399cc">.</span><span style="color: #cccccc">x</span><span style="color: #3399cc">)</span>
@@ -99,18 +111,29 @@
       <span style="color: #cdcd00">val</span> <span style="color: #cccccc">currMaxY</span> <span style="color: #cdcd00">=</span> <span style="color: #cccccc">sortedByY</span><span style="color: #3399cc">.</span><span style="color: #cccccc">last</span><span style="color: #3399cc">.</span><span style="color: #cccccc">y</span>
       <span style="color: #cdcd00">for</span> <span style="color: #3399cc">(</span><span style="color: #cccccc">i</span> <span style="color: #cdcd00">&lt;-</span> <span style="color: #cccccc">sortedByY</span><span style="color: #3399cc">.</span><span style="color: #cccccc">indices</span><span style="color: #3399cc">)</span> <span style="color: #cdcd00">yield</span> <span style="color: #3399cc">{</span>
         <span style="color: #cdcd00">val</span> <span style="color: #cccccc">square</span> <span style="color: #cdcd00">=</span> <span style="color: #cccccc">sortedByY</span><span style="color: #3399cc">(</span><span style="color: #cccccc">i</span><span style="color: #3399cc">)</span>
-        <span style="color: #00cdcd">Square</span><span style="color: #3399cc">(</span><span style="color: #cccccc">square</span><span style="color: #3399cc">.</span><span style="color: #cccccc">color</span><span style="color: #3399cc">,</span> <span style="color: #cccccc">square</span><span style="color: #3399cc">.</span><span style="color: #cccccc">x</span><span style="color: #3399cc">,</span> <span style="color: #cccccc">square</span><span style="color: #3399cc">.</span><span style="color: #cccccc">y</span> <span style="color: #3399cc">+</span> <span style="color: #3399cc">(</span><span style="color: #cccccc">maxY</span> <span style="color: #3399cc">-</span> <span style="color: #cccccc">currMaxY</span><span style="color: #3399cc">))</span> <span style="color: #3399cc">}</span> <span style="color: #3399cc">}</span>
-    <span style="color: #3399cc">.</span><span style="color: #cccccc">toList</span> <span style="color: #3399cc">}</span>
+        <span style="color: #cccccc">square</span><span style="color: #3399cc">.</span><span style="color: #cccccc">copy</span><span style="color: #3399cc">(</span><span style="color: #cccccc">y</span> <span style="color: #cdcd00">=</span> <span style="color: #cccccc">square</span><span style="color: #3399cc">.</span><span style="color: #cccccc">y</span> <span style="color: #3399cc">+</span> <span style="color: #3399cc">(</span><span style="color: #cccccc">maxY</span> <span style="color: #3399cc">-</span> <span style="color: #cccccc">currMaxY</span><span style="color: #3399cc">))</span> <span style="color: #3399cc">}</span> <span style="color: #3399cc">}</span>
+    <span style="color: #3399cc">.</span><span style="color: #cccccc">toList</span>
+<span style="color: #3399cc">}</span>
+
+<span style="color: #cdcd00">def</span> <span style="color: #cccccc">stack</span><span style="color: #3399cc">(</span><span style="color: #cccccc">color</span><span style="color: #cdcd00">:</span> <span style="color: #00cd00">Color</span><span style="color: #3399cc">,</span> <span style="color: #cccccc">squares</span><span style="color: #cdcd00">:</span> <span style="color: #00cd00">List</span><span style="color: #3399cc">[</span><span style="color: #00cd00">Square</span><span style="color: #3399cc">])</span><span style="color: #cdcd00">:</span> <span style="color: #00cd00">List</span><span style="color: #3399cc">[</span><span style="color: #00cd00">Square</span><span style="color: #3399cc">]</span> <span style="color: #cdcd00">=</span> <span style="color: #3399cc">{</span>
+  <span style="color: #cdcd00">val</span> <span style="color: #cccccc">has0y</span> <span style="color: #cdcd00">=</span> <span style="color: #cccccc">squares</span><span style="color: #3399cc">.</span><span style="color: #cccccc">exists</span><span style="color: #3399cc">(</span><span style="color: #cdcd00">_</span><span style="color: #3399cc">.</span><span style="color: #cccccc">y</span> <span style="color: #3399cc">&lt;=</span> <span style="color: #cd00cd">0</span><span style="color: #3399cc">)</span>
+  <span style="color: #cdcd00">val</span> <span style="color: #cccccc">squs</span> <span style="color: #cdcd00">=</span>
+    <span style="color: #cdcd00">if</span> <span style="color: #3399cc">(</span><span style="color: #cccccc">has0y</span><span style="color: #3399cc">)</span> <span style="color: #cccccc">squares</span><span style="color: #3399cc">.</span><span style="color: #cccccc">map</span><span style="color: #3399cc">(</span><span style="color: #cccccc">s</span> <span style="color: #cdcd00">=&gt;</span> <span style="color: #cccccc">s</span><span style="color: #3399cc">.</span><span style="color: #cccccc">copy</span><span style="color: #3399cc">(</span><span style="color: #cccccc">y</span> <span style="color: #cdcd00">=</span> <span style="color: #cccccc">s</span><span style="color: #3399cc">.</span><span style="color: #cccccc">y</span> <span style="color: #3399cc">+</span> <span style="color: #cd00cd">1</span><span style="color: #3399cc">))</span>
+    <span style="color: #cdcd00">else</span> <span style="color: #cccccc">squares</span>
+  <span style="color: #cdcd00">val</span> <span style="color: #cccccc">stacked</span> <span style="color: #cdcd00">=</span> <span style="color: #cccccc">squs</span><span style="color: #3399cc">.</span><span style="color: #cccccc">map</span><span style="color: #3399cc">(</span><span style="color: #cccccc">s</span> <span style="color: #cdcd00">=&gt;</span> <span style="color: #cccccc">s</span><span style="color: #3399cc">.</span><span style="color: #cccccc">copy</span><span style="color: #3399cc">(</span><span style="color: #cccccc">color</span> <span style="color: #cdcd00">=</span> <span style="color: #cccccc">color</span><span style="color: #3399cc">,</span> <span style="color: #cccccc">y</span> <span style="color: #cdcd00">=</span> <span style="color: #cccccc">s</span><span style="color: #3399cc">.</span><span style="color: #cccccc">y</span> <span style="color: #3399cc">-</span> <span style="color: #cd00cd">1</span><span style="color: #3399cc">))</span>
+  <span style="color: #cccccc">stacked</span> <span style="color: #3399cc">++</span> <span style="color: #cccccc">squares</span>
+<span style="color: #3399cc">}</span>
 </pre></td></tr></table>
             </div>
         </div>
     </div>
 
+    <!-- 0.1 Transformation -->
     <div class="item">
         <h4>0.1 Transformation (Easy)</h4>
         <div>
             <span>Input &#8625;</span><br/>
-            <canvas id="initial-figure-1" width="180" height="90"></canvas>
+            <canvas id="initial-figure-01" width="180" height="90"></canvas>
         </div>
         <div>
             <span>Transformation &#8674;</span><br/>
@@ -118,22 +141,23 @@
             <div class="snippet" style="background: #000000; color: #999;"><table><tr><td><pre style="margin: 0; line-height: 125%">1
 2
 3</pre></td><td><pre style="margin: 0; line-height: 125%"><span style="color: #cccccc">initialFigure</span><span style="color: #3399cc">.</span><span style="color: #cccccc">map</span> <span style="color: #3399cc">{</span> <span style="color: #cccccc">square</span> <span style="color: #cdcd00">=&gt;</span>
-  <span style="color: #cdcd00">if</span> <span style="color: #3399cc">(</span><span style="color: #cccccc">square</span><span style="color: #3399cc">.</span><span style="color: #cccccc">color</span> <span style="color: #3399cc">==</span> <span style="color: #cccccc">magenta</span><span style="color: #3399cc">)</span> <span style="color: #00cdcd">Square</span><span style="color: #3399cc">(</span><span style="color: #cccccc">blue</span><span style="color: #3399cc">,</span> <span style="color: #cccccc">square</span><span style="color: #3399cc">.</span><span style="color: #cccccc">x</span><span style="color: #3399cc">,</span> <span style="color: #cccccc">square</span><span style="color: #3399cc">.</span><span style="color: #cccccc">y</span><span style="color: #3399cc">)</span>
+  <span style="color: #cdcd00">if</span> <span style="color: #3399cc">(</span><span style="color: #cccccc">square</span><span style="color: #3399cc">.</span><span style="color: #cccccc">color</span> <span style="color: #3399cc">==</span> <span style="color: #cccccc">magenta</span><span style="color: #3399cc">)</span> <span style="color: #cccccc">square</span><span style="color: #3399cc">.</span><span style="color: #cccccc">copy</span><span style="color: #3399cc">(</span><span style="color: #cccccc">color</span> <span style="color: #cdcd00">=</span> <span style="color: #cccccc">blue</span><span style="color: #3399cc">)</span>
   <span style="color: #cdcd00">else</span> <span style="color: #cccccc">square</span> <span style="color: #3399cc">}</span>
 </pre></td></tr></table>
             </div>
         </div>
         <div>
             <span>Output &#8628;</span><br/>
-            <canvas id="transformation-1" width="180" height="90"></canvas>
+            <canvas id="transformation-01" width="180" height="90"></canvas>
         </div>
     </div>
 
+    <!-- 0.2 Rejection (Easy) -->
     <div class="item">
         <h4>0.2 Rejection (Easy)</h4>
         <div>
             <span>Input &#8625;</span><br/>
-            <canvas id="initial-figure-2" width="180" height="90"></canvas>
+            <canvas id="initial-figure-02" width="180" height="90"></canvas>
         </div>
         <div>
             <span>Transformation &#8674;</span><br/>
@@ -148,16 +172,36 @@
         </div>
         <div>
             <span>Output &#8628;</span><br/>
-            <canvas id="transformation-2" width="180" height="90"></canvas>
+            <canvas id="transformation-02" width="180" height="90"></canvas>
         </div>
     </div>
 
+    <!-- 0.3 Composition (Easy) -->
+    <div class="item">
+        <h4>0.3 Composition (Easy)</h4>
+        <div>
+            <span>Input &#8625;</span><br/>
+            <canvas id="initial-figure-03" width="180" height="90"></canvas>
+        </div>
+        <div>
+            <span>Transformation &#8674;</span><br/>
+            <!-- HTML generated using hilite.me -->
+            <div class="snippet" style="background: #000000; color: #999;"><table><tr><td><pre style="margin: 0; line-height: 125%">1</pre></td><td><pre style="margin: 0; line-height: 125%"><span style="color: #cccccc">stack</span><span style="color: #3399cc">(</span><span style="color: #cccccc">magenta</span><span style="color: #3399cc">,</span> <span style="color: #cccccc">applyGravity</span><span style="color: #3399cc">(</span><span style="color: #cccccc">initialFigure</span><span style="color: #3399cc">.</span><span style="color: #cccccc">filter</span><span style="color: #3399cc">(</span><span style="color: #cdcd00">_</span><span style="color: #3399cc">.</span><span style="color: #cccccc">color</span> <span style="color: #3399cc">==</span> <span style="color: #cccccc">blue</span><span style="color: #3399cc">)))</span>
+</pre></td></tr></table>
+            </div>
+        </div>
+        <div>
+            <span>Output &#8628;</span><br/>
+            <canvas id="transformation-03" width="180" height="90"></canvas>
+        </div>
+    </div>
 </div>
+
 <footer>
     <p>
         Made by <a href="http://purecore.ro" id="purecore-footer-link"><span class="purecore-logotype-small">&Lambda;</span> PureCore.ro</a><br/><br/>
         Based on <a href="http://david-peter.de" target="_blank">David Peter</a>'s &nbsp;<a href="http://david-peter.de/cube-composer" target="_blank"><span style="color: #bbb; background-color: #ab3612; padding: 0 .2rem;">cube</span><span style="color: #bbb; background-color: #473128; padding: 0 .2rem;">composer</span></a><br/><br/>
-        Uses <a href="https://github.com/lihaoyi" target="_blank">Lihaoyi</a>'s <a href="http://www.scala-js.org" target="_blank" style="color: #af9723;">ScalaJS</a> <a href="http://scala-js.github.io/scala-js-dom" target="_blank" style="color: #0044dd;">DOM</a> &amp; <a href="https://github.com/lihaoyi/workbench" target="_blank" style="color: #a300a3;">Workbench</a> <a href="https://github.com/lihaoyi/workbench-example-app" target="_blank">Example App</a><br/><br/>
+        Uses <a href="https://github.com/lihaoyi" target="_blank">Li Haoyi</a>'s <a href="http://www.scala-js.org" target="_blank" style="color: #af9723;">ScalaJS</a> <a href="http://scala-js.github.io/scala-js-dom" target="_blank" style="color: #0044dd;">DOM</a> &amp; <a href="https://github.com/lihaoyi/workbench" target="_blank" style="color: #a300a3;">Workbench</a> <a href="https://github.com/lihaoyi/workbench-example-app" target="_blank">Example App</a><br/><br/>
         Source code on <a href="https://github.com/padurean/square-composer" target="_blank">GitHub</a>
     </p>
 </footer>
@@ -166,10 +210,12 @@
 <script type="text/javascript" src="/workbench.js"></script>
 <script>
 ro.purecore.squarecomposer.Logo().main(document.getElementById('squarecomposer-logotype'));
-ro.purecore.squarecomposer.InitialFigure().main(document.getElementById('initial-figure-1'));
-ro.purecore.squarecomposer.Transformation01().main(document.getElementById('transformation-1'));
-ro.purecore.squarecomposer.InitialFigure().main(document.getElementById('initial-figure-2'));
-ro.purecore.squarecomposer.Transformation02().main(document.getElementById('transformation-2'));
+ro.purecore.squarecomposer.InitialFigure().main(document.getElementById('initial-figure-01'));
+ro.purecore.squarecomposer.Transformation01().main(document.getElementById('transformation-01'));
+ro.purecore.squarecomposer.InitialFigure().main(document.getElementById('initial-figure-02'));
+ro.purecore.squarecomposer.Transformation02().main(document.getElementById('transformation-02'));
+ro.purecore.squarecomposer.InitialFigure().main(document.getElementById('initial-figure-03'));
+ro.purecore.squarecomposer.Transformation03().main(document.getElementById('transformation-03'));
 </script>
 </body>
 </html>
