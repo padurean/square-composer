@@ -1,0 +1,24 @@
+html, body { font-size: 1rem; }
+body { margin: 0; background-color: #000; color: #9fa6ad; font-family: 'Arial Narrow', sans-serif; }
+header, #main, footer { width: 95%; text-align: left; padding: 2% 2.5%; }
+#main { padding-top: 0; }
+h4 { font-weight: normal; color: #5e666e; }
+footer { margin-top: 5.5rem; color: #666; font-size: 0.85rem; }
+footer a { color: #999; }
+#purecore-footer-link { margin-left: .35rem; color: #008b8b; font-family: "Merriweather", "PT Serif", Georgia, "Times New Roman", serif; }
+#main > .item { margin-top: 3.5rem; margin-bottom: 1.5rem; }
+#main > .item > div > span { display:inline-block; margin-top: 0.5rem; color: #666; font-size: 0.85rem; }
+#main > .item > h4 { padding: .5rem 0; border-bottom: dashed 1px #3b4045; margin-bottom: 1.5rem; }
+#main > .item > div { vertical-align: top; display: inline-block; }
+.snippet { width: auto; border: dashed 1px #3b4045; overflow: auto; margin: .5rem 0; }
+.jump-to-def { display: inline-block; font-size: 0.85rem; color: #666; margin-top: 0.5rem; margin-right: 0.5rem; }
+.link-to-def { color: #777; border-bottom: dashed 1px #3b4045; margin-bottom: 2rem; font-size: 0.85rem; }
+.link-to-def > pre { display: inline-block; }
+canvas { display: inline-block; margin-top: .5rem; }
+a { text-decoration: none; color: #7b8c9d; }
+pre, code { font-family: Hack, monospace; font-size: 0.75rem; line-height: 1rem; padding: 0; margin: 0; }
+/*code a { text-decoration: underline; }*/
+.purecore-logotype-small { background-color: #333; color: #20b2aa; font-size: 1rem; padding-left: 0.25em; padding-right: 0.25em; }
+h2 { font-size: 1.6rem; }
+.prettyprint > .pln { color: #9fa6ad; }
+.section-no { color: #5e666e; }
