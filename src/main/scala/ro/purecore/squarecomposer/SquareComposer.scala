@@ -186,9 +186,8 @@ object SquareComposer {
         |  new Transformations(squares)
         |
         |class RichCanvas(val canvas: html.Canvas) extends AnyVal {
-        |def getContext2D: CanvasRenderingContext2D =
-        |  canvas.getContext("2d").asInstanceOf[dom.CanvasRenderingContext2D] }
-        |
+        |  def getContext2D: CanvasRenderingContext2D =
+        |    canvas.getContext("2d").asInstanceOf[dom.CanvasRenderingContext2D] }
         |<a name="def-compact-down" class="nocode"></a>
         |def compactDown: List[Square] = {
         |val maxY = squares.maxBy(_.y).y
@@ -200,7 +199,6 @@ object SquareComposer {
         |    for (square <- sortedByY)
         |      yield square.copy(y = square.y + (maxY - currMaxY)) }
         |  .toList }
-        |
         |<a name="def-compact-left" class="nocode"></a>
         |def compactLeft(squares: List[Square]): List[Square] =
         |  squares
@@ -212,11 +210,9 @@ object SquareComposer {
         |        acc :+ havingSameX.map(_.copy(x = acc.last.head.x + 1))
         |      else acc :+ havingSameX }
         |    .flatten
-        |
         |<a name="def-move-vertically" class="nocode"></a>
         |def moveVertically(deltaY: Int, color: Option[Color] = None): List[Square] =
         |  squares.map(s => s.copy(color = color.getOrElse(s.color), y = s.y + deltaY))
-        |
         |<a name="def-stack-above" class="nocode"></a>
         |def stackAbove(colors: List[Color]): List[Square] = {
         |  assert(
@@ -234,7 +230,6 @@ object SquareComposer {
         |    bottomSquares.moveVertically(-deltaY, Some(c)) }
         |
         |  stacked ++ liftedSquares }
-        |
         |<a name="def-stack-below" class="nocode"></a>
         |def stackBelow(colors: List[Color]): List[Square] = {
         |  assert(
@@ -248,7 +243,6 @@ object SquareComposer {
         |    topSquares.moveVertically(deltaY, Some(c)) }
         |
         |  stacked ++ squares }
-        |
         |<a name="def-stack-above-previous-if-same-color" class="nocode"></a>
         |def stackAbovePreviousIfSameColor(): List[Square] = {
         |  assert(
