@@ -3,6 +3,9 @@ package ro.purecore.squarecomposer
 import org.scalajs.dom
 import org.scalajs.dom._
 
+import scala.scalajs.js.annotation.JSExport
+
+@JSExport
 object Effects {
   def renderFirstTransformationAndDraw(
     parentDiv: html.Div,
@@ -35,13 +38,9 @@ object Effects {
     strokeStyle: String = "3px #333333")(
     implicit ctx: dom.CanvasRenderingContext2D)
   : Unit = {
-
     ctx.strokeStyle = strokeStyle
-    for(square <- squares.reverse) {
-      ctx.strokeRect(square.x * s + dx, square.y * s + dy, s, s)
-
-      ctx.fillStyle = square.color
-      ctx.fillRect(square.x * s + dx, square.y * s + dy, s, s) } }
+    for(square <- squares.reverse)
+      drawSquare(square.x, square.y, dx, dy, s, square.color) }
 
   def drawBg (
     squares: List[Square],
@@ -56,11 +55,22 @@ object Effects {
     val maxY = squares.maxBy(_.y).y
 
     ctx.strokeStyle = strokeStyle
-    for (x <- 0 to maxX; y <- 0 to maxY) {
-      ctx.strokeRect(x * s + dx, y * s + dy, s, s)
+    for (x <- 0 to maxX; y <- 0 to maxY)
+      drawSquare(x, y, dx, dy, s, color) }
 
-      ctx.fillStyle = color
-      ctx.fillRect(x * s + dx, y * s + dy, s, s) } }
+  def drawSquare(
+    x: Int,
+    y: Int,
+    dx: Int,
+    dy: Int,
+    s: Int,
+    color: Color)(
+    implicit ctx: CanvasRenderingContext2D)
+  : Unit = {
+    ctx.strokeRect(x * s + dx, y * s + dy, s, s)
+
+    ctx.fillStyle = color
+    ctx.fillRect(x * s + dx, y * s + dy, s, s) }
 
   def fillText
   (text: String, x: Double, y: Double)

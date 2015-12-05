@@ -36,7 +36,7 @@ object DomRenderer {
       div(`class` := "item")(
         h4(span(`class` := "section-no")(t.uid), t.name),
         div(inCanvas),
-        div(div(`class` := "snippet")(
+        div(`class` := "snippetWrapper")(div(`class` := "snippet")(
             pre(`class` := "prettyprint lang-scala")(srcCodesString))),
         div(outCanvas),
         div(`class` := "jump-to-def")("Jump to function:"))
