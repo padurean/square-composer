@@ -31,28 +31,31 @@ object DomRenderer {
       id := outputCanvasId,
       "width".attr := w.toString,
       "height".attr := h.toString)
+    val srcCodesString = t.sourceCodes.mkString("\n\n")
     val item =
       div(`class` := "item")(
-        h4(
-          span(`class` := "section-no")(t.uid),
-          t.name),
-        div(
-          inCanvas),
-        div(
-          div(
-            `class` := "snippet")(
-            pre(
-              `class` := "prettyprint lang-scala")(
-              t.sourceCodes.mkString("\n\n")))),
-        div(
-          outCanvas),
+        h4(span(`class` := "section-no")(t.uid), t.name),
+        div(inCanvas),
+        div(div(`class` := "snippet")(
+            pre(`class` := "prettyprint lang-scala")(srcCodesString))),
+        div(outCanvas),
         div(`class` := "jump-to-def")("Jump to function:"))
         .render
 
     for (func <- t.functions) item.appendChild(
-      a(
-        `class` := "link-to-def", href := s"#def-${snakify(func)}")(
+      a(`class` := "link-to-def", href := s"#def-${snakify(func)}")(
         pre(func)).render)
 
     (item, inputCanvasId, outputCanvasId) }
+
+  def renderCommonCode(
+    sectionId: String,
+    sectionName: String,
+    code: String)
+  : dom.Node = {
+      div(`class` := "item")(
+        h4(span(`class` := "section-no")(sectionId), sectionName),
+        div(`class` := "snippet")(
+          pre(`class` := "prettyprint lang-scala")(raw(code))))
+        .render }
 }
