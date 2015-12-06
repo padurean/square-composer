@@ -21,7 +21,6 @@ footer * { font-size: 0.85rem; }
 .snippet { width: auto; overflow: auto; margin: .5rem auto; }
 .snippet * { font-size: 0.75rem; }
 .snippet > .prettyprint { background-color: #1c1c1c; text-align: left; padding: .75rem;}
-.snippet > .prettyprint > .pln { color: #9199a1; }
 .snippet > pre { display: inline-block; }
 .jump-to-def { display: inline-block; font-size: 0.85rem; color: #5e666e; margin-top: .5rem; margin-right: 0.75rem; }
 .link-to-def { display: inline-block; font-size: 0.85rem; color: #7b8c9d; margin-top: .5rem; margin-right: 0.55rem;}
@@ -30,7 +29,8 @@ canvas { margin: .5rem 0; }
 a { text-decoration: none; color: #7b8c9d; }
 pre, code { font-family: Hack, monospace; font-size: 0.75rem; line-height: 1rem; padding: 0; margin: 0; }
 .section-no { color: #5e666e; margin-right: .5rem; }
-pre .pun { color: #7b8c9d; }
+pre .pln { color: #9199a1; }
+pre .pun { color: #67737e; }
 pre .str { color: #cc6600; }
 pre .kwd { color: #71a93d; }
 pre .lit { color: #c79f05; }
