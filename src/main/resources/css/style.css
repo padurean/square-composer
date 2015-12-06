@@ -8,11 +8,11 @@ header > h4 { font-size: 16px; margin-top: .5rem; }
 header > h4 > a { font-size: 16px; }
 #main { padding-top: 0; }
 h4 { font-weight: normal; color: #5e666e; }
-footer { margin-top: 3rem; color: #5e666e; }
+footer { margin-top: 1rem; color: #5e666e; }
 footer * { font-size: 0.85rem; }
 #purecore-footer-link { margin-left: .35rem; color: #008b8b; font-family: "Merriweather", "PT Serif", Georgia, "Times New Roman", serif; }
 .purecore-logotype-small { background-color: #333; color: #20b2aa; font-size: 1rem; padding-left: 0.25em; padding-right: 0.25em; }
-#main > .item { margin-top: 3.5rem; margin-bottom: 1.5rem; }
+#main > .item { margin-top: 5.5rem; margin-bottom: 8.5rem; }
 #main > .item > div > span { display:inline-block; margin-top: 0.5rem; color: #5e666e; font-size: 0.85rem; }
 #main > .item > h4 { padding: .5rem 0; margin-bottom: 0.75rem; }
 #main > .item > div { vertical-align: top; }
@@ -20,7 +20,7 @@ footer * { font-size: 0.85rem; }
 .snippetWrapper > .snippet { width: auto; }
 .snippet { width: auto; overflow: auto; margin: .5rem auto; }
 .snippet * { font-size: 0.75rem; }
-.snippet > .prettyprint { background: transparent; text-align: left; }
+.snippet > .prettyprint { background-color: #1c1c1c; text-align: left; padding: .75rem;}
 .snippet > .prettyprint > .pln { color: #9199a1; }
 .snippet > pre { display: inline-block; }
 .jump-to-def { display: inline-block; font-size: 0.85rem; color: #5e666e; margin-top: .5rem; margin-right: 0.75rem; }
@@ -34,6 +34,30 @@ pre .pun { color: #7b8c9d; }
 pre .str { color: #cc6600; }
 pre .kwd { color: #71a93d; }
 pre .lit { color: #c79f05; }
+.item-actions-box { margin-top: 0.75rem; }
+.item-versions-box {
+    width: auto;
+    height: 1.5rem;
+    overflow: hidden;
+    background: url('../images/down_arrow_select.png') no-repeat right #1c1c1c;
+    background-size: 1.5rem 1.5rem;
+    margin-right: 0.5rem;}
+.item-versions-box > select {
+    color: #7b8c9d;
+    background: transparent;
+    width: auto;
+    padding: 0.2rem 3rem 0.25em 0.5em ;
+    font-size: 0.75rem;
+    line-height: 1;
+    border: 0;
+    border-radius: 0;
+    height: 1.5rem;
+    -webkit-appearance: none; }
+.item-actions-box > div { display: inline-block; vertical-align: middle; }
+.item-actions-box > div > a { width: 3.5rem; height: 1.65rem; vertical-align: middle; display: table; text-align: center; font-weight: normal; background: #1c1c1c; color: #71a93d; text-transform: uppercase; }
+.item-actions-box > div > a:hover { color: #cc6600; background-color: #161616; }
+.item-actions-box > div > a > span { display: table-cell; vertical-align: middle; }
+
 
 /* >>> Media Queries */
 /* Smartphones (portrait and landscape) ----------- */

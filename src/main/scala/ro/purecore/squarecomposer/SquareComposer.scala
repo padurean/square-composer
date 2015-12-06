@@ -48,15 +48,15 @@ object SquareComposer {
         |    canvas.getContext("2d").asInstanceOf[dom.CanvasRenderingContext2D] }
         |<a name="def-compact-down" class="nocode"></a>
         |def compactDown: List[Square] = {
-        |val maxY = squares.maxBy(_.y).y
-        |squares
-        |  .groupBy(_.x)
-        |  .flatMap { case (x, havingSameX) =>
-        |    val sortedByY = havingSameX.sortBy(_.y)
-        |    val currMaxY = sortedByY.last.y
-        |    for (square <- sortedByY)
-        |      yield square.copy(y = square.y + (maxY - currMaxY)) }
-        |  .toList }
+        |  val maxY = squares.maxBy(_.y).y
+        |  squares
+        |    .groupBy(_.x)
+        |    .flatMap { case (x, havingSameX) =>
+        |      val sortedByY = havingSameX.sortBy(_.y)
+        |      val currMaxY = sortedByY.last.y
+        |      for (square <- sortedByY)
+        |        yield square.copy(y = square.y + (maxY - currMaxY)) }
+        |    .toList }
         |<a name="def-compact-left" class="nocode"></a>
         |def compactLeft(squares: List[Square]): List[Square] =
         |  squares

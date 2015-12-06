@@ -32,19 +32,32 @@ object DomRenderer {
       "width".attr := w.toString,
       "height".attr := h.toString)
     val srcCodesString = t.sourceCodes.mkString("\n\n")
+    val itemId = s"item-${t.uid}"
     val item =
       div(`class` := "item")(
         h4(span(`class` := "section-no")(t.uid), t.name),
         div(inCanvas),
-        div(`class` := "snippetWrapper")(div(`class` := "snippet")(
-            pre(`class` := "prettyprint lang-scala")(srcCodesString))),
-        div(outCanvas),
-        div(`class` := "jump-to-def")("Jump to function:"))
-        .render
+        div(`class` := "snippetWrapper")(
+          div(`class` := "snippet")(
+            pre(`class` := "prettyprint lang-scala")(srcCodesString),
+            div(`class` := "item-actions-box")(
+              div(`class` := "item-versions-box")(
+                select(id := s"$itemId-versions")(
+                  for (sci <- t.sourceCodes.indices) yield {
+                    option(id := s"$itemId-version-$sci", value := sci)(s"Version-$sci") } )),
+              div(a(href := "#")(span("Run!"))))
+          )),
+        div(outCanvas)
+      )
+      .render
 
-    for (func <- t.functions) item.appendChild(
-      a(`class` := "link-to-def", href := s"#def-${snakify(func)}")(
-        pre(func)).render)
+    if (t.functions.nonEmpty) {
+      item.appendChild(div(`class` := "jump-to-def")("Jump to function:").render)
+        for (func <- t.functions) {
+          val linkToDef =
+            a(`class` := "link-to-def", href := s"#def-${ snakify(func) }")(pre (func))
+          item.appendChild(linkToDef.render) }
+    }
 
     (item, inputCanvasId, outputCanvasId) }
 

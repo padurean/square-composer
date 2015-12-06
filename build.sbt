@@ -15,6 +15,7 @@ libraryDependencies ++= Seq(
   "com.lihaoyi" %%% "scalatags" % "0.5.2"
 )
 
+// TODO OGG: fix below code
 bootSnippet :=
   """ro.purecore.squarecomposer.Logo().main(document.getElementById('squarecomposer-logotype'));
     |ro.purecore.squarecomposer.InitialFigure().main(document.getElementById('initial-figure-1'));

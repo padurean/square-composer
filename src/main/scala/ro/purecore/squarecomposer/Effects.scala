@@ -35,7 +35,7 @@ object Effects {
     dx: Int,
     dy: Int,
     s: Int = defaultSize,
-    strokeStyle: String = "3px #333333")(
+    strokeStyle: String = "#222")(
     implicit ctx: dom.CanvasRenderingContext2D)
   : Unit = {
     ctx.strokeStyle = strokeStyle
@@ -47,8 +47,8 @@ object Effects {
     dx: Int,
     dy: Int,
     s: Int = defaultSize,
-    color: Color = "#333",
-    strokeStyle: String = "3px #222")(
+    color: Color = "#1c1c1c",
+    strokeStyle: String = "#333")(
     implicit ctx: dom.CanvasRenderingContext2D)
   : Unit = {
     val maxX = squares.maxBy(_.x).x

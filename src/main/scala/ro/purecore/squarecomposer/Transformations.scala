@@ -108,124 +108,146 @@ object Transformations {
       uid = "0.1",
       name = "Transformation",
       input = initialFigure0,
-      transformations = List((ss: List[Square]) => ss.map(_.copy(color = blue))),
+      transformations = List(
+        (squares: List[Square]) => squares.map(_.copy(color = blue))
+      ),
       sourceCodes = List(
-        """def moveVertically(deltaY: Int, color: Option[Color] = None): List[Square] =
-          |  squares.map(s => s.copy(color = color.getOrElse(s.color), y = s.y + deltaY))"""
-          .stripMargin),
-      functions = List("compactLeft", "compactDown")),
+        """squares.map(_.copy(color = blue))"""
+      ),
+      functions = List.empty[String]),
 
     Transformation(
       uid = "0.2",
       name = "Rejection",
       input = initialFigure0,
-      transformations = List((ss: List[Square]) => ss.filter(_.color == blue).compactDown),
+      transformations = List(
+        (squares: List[Square]) => squares.filter(_.color == blue).compactDown
+      ),
       sourceCodes = List(
-        """def moveVertically(deltaY: Int, color: Option[Color] = None): List[Square] =
-          |  squares.map(s => s.copy(color = color.getOrElse(s.color), y = s.y + deltaY))"""
-          .stripMargin),
-      functions = List("compactLeft", "compactDown")),
+        """squares.filter(_.color == blue).compactDown"""
+      ),
+      functions = List("compactDown")),
 
     Transformation(
       uid = "0.3",
       name = "Composition",
       input = initialFigure0,
       transformations = List(
-        (ss: List[Square]) =>
-          ss.filter(_.color == blue).compactDown.stackAbove(List(orange))),
+        (squares: List[Square]) =>
+          squares.filter(_.color == blue).compactDown.stackAbove(List(orange))
+      ),
       sourceCodes = List(
-        """def moveVertically(deltaY: Int, color: Option[Color] = None): List[Square] =
-          |  squares.map(s => s.copy(color = color.getOrElse(s.color), y = s.y + deltaY))"""
-          .stripMargin),
-      functions = List("compactLeft", "compactDown")),
+        """squares.filter(_.color == blue).compactDown.stackAbove(List(orange))"""
+      ),
+      functions = List("compactDown", "stackAbove")),
 
     Transformation(
       uid = "0.4",
       name = "Spanish flag",
       input = initialFigure0,
       transformations = List(
-        (ss: List[Square]) =>
-          ss.filter(_.color == blue).compactDown.stackAbove(List(orange, blue))),
+        (squares: List[Square]) =>
+          squares.filter(_.color == blue).compactDown.stackAbove(List(orange, blue))
+      ),
       sourceCodes = List(
-        """def moveVertically(deltaY: Int, color: Option[Color] = None): List[Square] =
-          |  squares.map(s => s.copy(color = color.getOrElse(s.color), y = s.y + deltaY))"""
-          .stripMargin),
-      functions = List("compactLeft", "compactDown")),
+        """squares.filter(_.color == blue).compactDown.stackAbove(List(orange, blue))"""
+      ),
+      functions = List("compactDown", "stackAbove")),
 
     Transformation(
       uid = "1.1",
       name = "Mercury",
       input = initialFigure1,
       transformations = List(
-        (ss: List[Square]) => ss
+        (squares: List[Square]) => squares
           .map(square =>
             if(square.color == brown) square.copy(color = orange)
             else square)
-          .stackAbove(List(orange))),
+          .stackAbove(List(orange))
+      ),
       sourceCodes = List(
-        """def moveVertically(deltaY: Int, color: Option[Color] = None): List[Square] =
-          |  squares.map(s => s.copy(color = color.getOrElse(s.color), y = s.y + deltaY))"""
-          .stripMargin),
-      functions = List("compactLeft", "compactDown")),
+        """squares
+          |  .map(square =>
+          |    if(square.color == brown) square.copy(color = orange)
+          |    else square)"""
+          .stripMargin
+      ),
+      functions = List.empty[String]),
 
     Transformation(
       uid = "1.2",
       name = "Venus",
       input = initialFigure1,
       transformations = List(
-        (ss: List[Square]) => ss
+        (squares: List[Square]) => squares
           .groupBy(_.x)
           .filter(_._2.exists(_.color == orange))
           .flatMap(_._2)
           .map(square =>
             if(square.color == blue) square.copy(color = orange)
             else square)
-          .toList),
+          .toList
+      ),
       sourceCodes = List(
-        """def moveVertically(deltaY: Int, color: Option[Color] = None): List[Square] =
-          |  squares.map(s => s.copy(color = color.getOrElse(s.color), y = s.y + deltaY))"""
-          .stripMargin),
-      functions = List("compactLeft", "compactDown")),
+        """squares
+          |  .groupBy(_.x)
+          |  .filter(_._2.exists(_.color == orange))
+          |  .flatMap(_._2)
+          |  .map(square =>
+          |    if(square.color == blue) square.copy(color = orange)
+          |    else square)
+          |  .toList"""
+          .stripMargin
+      ),
+      functions = List.empty[String]),
 
     Transformation(
       uid = "1.3",
       name = "Earth",
       input = initialFigure2,
       transformations = List(
-        (ss: List[Square]) => ss
+        (squares: List[Square]) => squares
           .filter(_.color == blue)
           .moveVertically(-1)
-          .stackBelow(List(brown))),
+          .stackBelow(List(brown))
+      ),
       sourceCodes = List(
-        """def moveVertically(deltaY: Int, color: Option[Color] = None): List[Square] =
-          |  squares.map(s => s.copy(color = color.getOrElse(s.color), y = s.y + deltaY))"""
-          .stripMargin),
-      functions = List("compactLeft", "compactDown")),
+        """squares
+          |  .filter(_.color == blue)
+          |  .moveVertically(-1)
+          |  .stackBelow(List(brown))"""
+          .stripMargin
+      ),
+      functions = List("moveVertically", "stackBelow")),
 
     Transformation(
       uid = "1.4",
       name = "Mars",
       input = initialFigure1,
       transformations = List(
-        (ss: List[Square]) => ss.map(square => square.copy(color = orange))),
+        (squares: List[Square]) =>
+          squares.map(square => square.copy(color = orange))
+      ),
       sourceCodes = List(
-        """def moveVertically(deltaY: Int, color: Option[Color] = None): List[Square] =
-          |  squares.map(s => s.copy(color = color.getOrElse(s.color), y = s.y + deltaY))"""
-          .stripMargin),
-      functions = List("compactLeft", "compactDown")),
+        """squares.map(square => square.copy(color = orange))"""
+      ),
+      functions = List.empty[String]),
 
     Transformation(
       uid = "2.1",
       name = "Bricklayer",
       input = initialFigure3,
       transformations = List(
-        (ss: List[Square]) => ss
+        (squares: List[Square]) => squares
           .stackAbovePreviousIfSameColor()
-          .map(s => if (s.color == blue) s.copy(color = brown) else s)),
+          .map(s => if (s.color == blue) s.copy(color = brown) else s)
+      ),
       sourceCodes = List(
-        """def moveVertically(deltaY: Int, color: Option[Color] = None): List[Square] =
-          |  squares.map(s => s.copy(color = color.getOrElse(s.color), y = s.y + deltaY))"""
-          .stripMargin),
-      functions = List("compactLeft", "compactDown"))
+        """squares
+          |  .stackAbovePreviousIfSameColor()
+          |  .map(s => if (s.color == blue) s.copy(color = brown) else s)"""
+          .stripMargin
+      ),
+      functions = List("stackAbovePreviousIfSameColor"))
   )
 }
