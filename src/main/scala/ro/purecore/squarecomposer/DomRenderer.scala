@@ -59,6 +59,12 @@ object DomRenderer {
           item.appendChild(linkToDef.render) }
     }
 
+    item.appendChild(
+      div(id := "goto-box")(
+        a(id := "goto-prev", href := "#")(raw("&lt;&lt;")),
+        a(id := "goto-next", href := "#")(raw("&gt;&gt;")))
+      .render)
+
     (item, inputCanvasId, outputCanvasId) }
 
   def renderCommonCode(

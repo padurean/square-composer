@@ -5,7 +5,6 @@ import org.scalajs.dom._
 
 import scala.scalajs.js.annotation.JSExport
 
-@JSExport
 object Effects {
   def renderFirstTransformationAndDraw(
     parentDiv: html.Div,

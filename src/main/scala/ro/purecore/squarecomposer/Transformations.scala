@@ -2,7 +2,6 @@ package ro.purecore.squarecomposer
 
 import scala.scalajs.js.annotation.JSExport
 
-@JSExport
 class Transformations(val squares: List[Square]) extends AnyVal {
 
   def compactDown: List[Square] = {
@@ -73,7 +72,6 @@ class Transformations(val squares: List[Square]) extends AnyVal {
     compactLeft(stackedByColor) }
 }
 
-@JSExport
 object Transformations {
 
   val orange: Color = "#b35900"
@@ -101,7 +99,6 @@ object Transformations {
     Square(blue,   3, 2), Square(blue,   4, 2), Square(blue,   5, 2),
     Square(orange, 6, 2), Square(orange, 7, 2), Square(brown,  8, 2))
 
-  @JSExport
   val definitions = Seq(
 
     Transformation(

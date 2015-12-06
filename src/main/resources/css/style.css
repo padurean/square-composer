@@ -42,7 +42,9 @@ pre .lit { color: #c79f05; }
     background: url('../images/down_arrow_select.png') no-repeat right #1c1c1c;
     background-size: 1.5rem 1.5rem;
     margin-right: 0.5rem;}
-.item-versions-box > select {
+
+select::-ms-expand { display: none; }
+select {
     color: #7b8c9d;
     background: transparent;
     width: auto;
@@ -52,18 +54,27 @@ pre .lit { color: #c79f05; }
     border: 0;
     border-radius: 0;
     height: 1.5rem;
-    -webkit-appearance: none; }
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;  /*IMPORTANT*/}
+select:hover { color: #99a6b3; }
+select:focus { color: #678cb1; }
+
 .item-actions-box > div { display: inline-block; vertical-align: middle; }
 .item-actions-box > div > a { width: 3.5rem; height: 1.65rem; vertical-align: middle; display: table; text-align: center; font-weight: normal; background: #1c1c1c; color: #71a93d; text-transform: uppercase; }
 .item-actions-box > div > a:hover { color: #cc6600; background-color: #161616; }
 .item-actions-box > div > a > span { display: table-cell; vertical-align: middle; }
 
+#goto-box { text-align: center; margin-top: 2rem; margin-bottom: 0; }
+#goto-box > a { display: inline-block; width: auto; text-align: center; padding: 0.5rem 2rem; background: #1c1c1c; color: #5e666e; font-size: 1rem; }
+#goto-box > a:hover { color: #678cb1; background-color: #161616; }
+#goto-box > a#goto-prev { margin-right: 3rem; }
 
 /* >>> Media Queries */
 /* Smartphones (portrait and landscape) ----------- */
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
     /* STYLES GO HERE */
-    header, #main, footer { text-align: left; }
+    header, #main, footer, #goto-box { text-align: left; }
     header > h2, header > h2 > span { font-size: 15px; }
     header > h4, header > h4 > a { font-size: 10px; }
     .item > h4, .item > h4 * { font-size: 0.7rem; }
@@ -78,7 +89,7 @@ pre .lit { color: #c79f05; }
 /* iPads (portrait and landscape) ----------- */
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
     /* STYLES GO HERE */
-    header, #main, footer { text-align: center; }
+    header, #main, footer, #goto-box { text-align: center; }
     header > h2, header > h2 > span { font-size: 26px; }
     header > h4, header > h4 > a { font-size: 16px; }
     .item > h4, .item > h4, h4 * { font-size: 1rem; }
@@ -93,7 +104,7 @@ pre .lit { color: #c79f05; }
 /* Desktops and laptops ----------- */
 @media only screen and (min-width : 1224px) {
     /* STYLES GO HERE */
-    header, #main, footer { text-align: center; }
+    header, #main, footer, #goto-box { text-align: center; }
     header > h2, header > h2 > span { font-size: 26px; }
     header > h4, header > h4 > a { font-size: 16px; }
     .item > h4, .item > h4, h4 * { font-size: 1rem; }
@@ -118,7 +129,7 @@ pre .lit { color: #c79f05; }
 /* iPhone 6 plus (portrait &amp; landscape)----------- */
 @media only screen and (min-device-width : 414px) and (max-device-width : 736px) and (-webkit-min-device-pixel-ratio : 3){
     /* STYLES GO HERE */
-    header, #main, footer { text-align: left; }
+    header, #main, footer, #goto-box { text-align: left; }
     header > h2, header > h2 > span { font-size: 20px; }
     header > h4, header > h4 > a { font-size: 12px; }
     .item > h4, .item > h4 * { font-size: 0.85rem; }
