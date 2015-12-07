@@ -2,6 +2,7 @@ package ro.purecore.squarecomposer
 
 import org.scalajs.dom
 import org.scalajs.dom._
+import org.scalajs.dom.ext.KeyCode
 
 import scala.scalajs.js.annotation.JSExport
 
@@ -10,12 +11,15 @@ object Effects {
 
   @JSExport
   def drawForUid(uid: String, parentDiv: html.Div, drawOutputFigure: Boolean = true): Unit = {
-    for (t <- Transformations.definitions.find(_.uid == uid))
+    for (t <- Transformations.definitions.find(_.uid == uid)) {
       renderFirstTransformationAndDraw(
         parentDiv,
         t,
         replace = true,
-        drawOutputFigure) }
+        drawOutputFigure)
+
+    scalajs.js.eval("PR.prettyPrint();")
+    SquareComposer.state = t.uid } }
 
   @JSExport
   def renderFirstTransformationAndDraw(

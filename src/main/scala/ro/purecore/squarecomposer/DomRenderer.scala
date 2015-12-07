@@ -61,11 +61,11 @@ object DomRenderer {
 
     val onClickPrevCb = t.prevUid
       .map( prevUid =>
-        s"ro.purecore.squarecomposer.Effects().drawForUid('$prevUid', document.getElementById('main'), false); PR.prettyPrint(); return false;")
+        s"ro.purecore.squarecomposer.Effects().drawForUid('$prevUid', document.getElementById('main'), false); return false;")
       .getOrElse("return false;")
     val onClickNextCb = t.nextUid
       .map( nextUid =>
-        s"ro.purecore.squarecomposer.Effects().drawForUid('$nextUid', document.getElementById('main'), false); PR.prettyPrint(); return false;")
+        s"ro.purecore.squarecomposer.Effects().drawForUid('$nextUid', document.getElementById('main'), false); return false;")
       .getOrElse("return false;")
     item.appendChild(
       div(id := "goto-box")(

@@ -1,6 +1,7 @@
 package ro.purecore.squarecomposer
 
 import org.scalajs.dom
+import org.scalajs.dom.ext.KeyCode
 import org.scalajs.dom.html
 import ro.purecore.squarecomposer.Effects._
 
@@ -10,6 +11,9 @@ import scala.scalajs.js.annotation.JSExport
 
 @JSExport
 object SquareComposer {
+
+  @JSExport
+  var state: String = Transformations.definitions.head.uid
 
   @JSExport
   def main(logoCanvas: html.Canvas, mainDiv: html.Div): Unit = {
@@ -118,6 +122,16 @@ object SquareComposer {
 
       mainDiv.appendChild(
         DomRenderer.renderCommonCode("Appendix:", "Common Code", commonCode))
+
+      dom.onkeypress = { (e: dom.KeyboardEvent) =>
+        Console.println("Caca maca")
+        for (t <- Transformations.definitions.find(_.uid == SquareComposer.state)) {
+          if (e.keyCode == KeyCode.left && t.prevUid.isDefined) {
+            drawForUid(t.prevUid.get, mainDiv, drawOutputFigure = false)  }
+          else if (e.keyCode == KeyCode.right && t.nextUid.isDefined) {
+            drawForUid(t.nextUid.get, mainDiv, drawOutputFigure = false) }
+          else if (e.keyCode == KeyCode.enter) {
+            drawForUid(t.uid, mainDiv, drawOutputFigure = true) } } }
     }
 
     dom.setTimeout(() => run(), 50) }
