@@ -24,8 +24,7 @@ object SquareComposer {
         "0px")(
         logoCanvas.getContext2D)
 
-      Transformations.definitions
-        .foreach(renderFirstTransformationAndDraw(mainDiv, _))
+      renderFirstTransformationAndDraw(mainDiv, Transformations.definitions.head)
 
       val commonCode =
       """type Color = String

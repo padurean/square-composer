@@ -1,7 +1,5 @@
 package ro.purecore.squarecomposer
 
-import scala.scalajs.js.annotation.JSExport
-
 class Transformations(val squares: List[Square]) extends AnyVal {
 
   def compactDown: List[Square] = {
@@ -103,6 +101,8 @@ object Transformations {
 
     Transformation(
       uid = "0.1",
+      prevUid = None,
+      nextUid = Some("0.2"),
       name = "Transformation",
       input = initialFigure0,
       transformations = List(
@@ -115,6 +115,8 @@ object Transformations {
 
     Transformation(
       uid = "0.2",
+      prevUid = Some("0.1"),
+      nextUid = Some("0.3"),
       name = "Rejection",
       input = initialFigure0,
       transformations = List(
@@ -127,6 +129,8 @@ object Transformations {
 
     Transformation(
       uid = "0.3",
+      prevUid = Some("0.2"),
+      nextUid = Some("0.4"),
       name = "Composition",
       input = initialFigure0,
       transformations = List(
@@ -140,6 +144,8 @@ object Transformations {
 
     Transformation(
       uid = "0.4",
+      prevUid = Some("0.3"),
+      nextUid = Some("1.1"),
       name = "Spanish flag",
       input = initialFigure0,
       transformations = List(
@@ -153,6 +159,8 @@ object Transformations {
 
     Transformation(
       uid = "1.1",
+      prevUid = Some("0.4"),
+      nextUid = Some("1.2"),
       name = "Mercury",
       input = initialFigure1,
       transformations = List(
@@ -166,13 +174,16 @@ object Transformations {
         """squares
           |  .map(square =>
           |    if(square.color == brown) square.copy(color = orange)
-          |    else square)"""
+          |    else square)
+          |  .stackAbove(List(orange))"""
           .stripMargin
       ),
       functions = List.empty[String]),
 
     Transformation(
       uid = "1.2",
+      prevUid = Some("1.1"),
+      nextUid = Some("1.3"),
       name = "Venus",
       input = initialFigure1,
       transformations = List(
@@ -200,6 +211,8 @@ object Transformations {
 
     Transformation(
       uid = "1.3",
+      prevUid = Some("1.2"),
+      nextUid = Some("1.4"),
       name = "Earth",
       input = initialFigure2,
       transformations = List(
@@ -219,6 +232,8 @@ object Transformations {
 
     Transformation(
       uid = "1.4",
+      prevUid = Some("1.3"),
+      nextUid = Some("2.1"),
       name = "Mars",
       input = initialFigure1,
       transformations = List(
@@ -232,6 +247,8 @@ object Transformations {
 
     Transformation(
       uid = "2.1",
+      prevUid = Some("1.4"),
+      nextUid = None,
       name = "Bricklayer",
       input = initialFigure3,
       transformations = List(

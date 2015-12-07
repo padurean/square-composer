@@ -5,17 +5,16 @@ import org.scalajs.dom
 import scalatags.JsDom.all._
 
 object DomRenderer {
-  def renderAll(t: Transformation): List[(dom.Node, String, String)] =
+  val inputCanvasId = s"initial-figure-canvas"
+  val outputCanvasId = s"transformation-canvas"
+
+  def renderAll(t: Transformation): List[dom.Node] =
     t.transformations.map(render(t)(_))
 
   def render(
     t: Transformation)(
     f: List[Square] => List[Square])
-  : (dom.Node, String, String) = {
-
-    val idStr = t.uid.replaceAllLiterally(".", "")
-    val inputCanvasId = s"initial-figure-$idStr"
-    val outputCanvasId = s"transformation-$idStr"
+  : dom.Node = {
 
     val output = f(t.input)
     val w =
@@ -32,7 +31,8 @@ object DomRenderer {
       "width".attr := w.toString,
       "height".attr := h.toString)
     val srcCodesString = t.sourceCodes.mkString("\n\n")
-    val itemId = s"item-${t.uid}"
+    val onClickRunCb =
+      s"ro.purecore.squarecomposer.Effects().drawForUid('${t.uid}', document.getElementById('main')); PR.prettyPrint(); return false;"
     val item =
       div(`class` := "item")(
         h4(span(`class` := "section-no")(t.uid), t.name),
@@ -42,10 +42,10 @@ object DomRenderer {
             pre(`class` := "prettyprint lang-scala")(srcCodesString),
             div(`class` := "item-actions-box")(
               div(`class` := "item-versions-box")(
-                select(id := s"$itemId-versions")(
+                select(id := "item-versions")(
                   for (sci <- t.sourceCodes.indices) yield {
-                    option(id := s"$itemId-version-$sci", value := sci)(s"Version-$sci") } )),
-              div(a(href := "#")(span("Run!"))))
+                    option(id := s"item-version-$sci", value := sci)(s"Version-$sci") } )),
+              div(a(href := "#", onclick := onClickRunCb)(span("Run!"))))
           )),
         div(outCanvas)
       )
@@ -59,13 +59,21 @@ object DomRenderer {
           item.appendChild(linkToDef.render) }
     }
 
+    val onClickPrevCb = t.prevUid
+      .map( prevUid =>
+        s"ro.purecore.squarecomposer.Effects().drawForUid('$prevUid', document.getElementById('main'), false); PR.prettyPrint(); return false;")
+      .getOrElse("return false;")
+    val onClickNextCb = t.nextUid
+      .map( nextUid =>
+        s"ro.purecore.squarecomposer.Effects().drawForUid('$nextUid', document.getElementById('main'), false); PR.prettyPrint(); return false;")
+      .getOrElse("return false;")
     item.appendChild(
       div(id := "goto-box")(
-        a(id := "goto-prev", href := "#")(raw("&lt;&lt;")),
-        a(id := "goto-next", href := "#")(raw("&gt;&gt;")))
+        a(id := "goto-prev", href := "#", onclick := onClickPrevCb)(raw("&lt;&lt;")),
+        a(id := "goto-next", href := "#", onclick := onClickNextCb)(raw("&gt;&gt;")))
       .render)
 
-    (item, inputCanvasId, outputCanvasId) }
+    item }
 
   def renderCommonCode(
     sectionId: String,
