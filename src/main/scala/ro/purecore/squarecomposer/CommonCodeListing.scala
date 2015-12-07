@@ -11,15 +11,18 @@ object CommonCodeListing {
       |
       |case class Square(color: Color, x: Int, y: Int)
       |
+      |
       |implicit def richCanvas(canvas: html.Canvas): RichCanvas =
       |  new RichCanvas(canvas)
       |
       |implicit def richListOfSquares(squares: List[Square]): Transformations =
       |  new Transformations(squares)
       |
+      |
       |class RichCanvas(val canvas: html.Canvas) extends AnyVal {
       |  def getContext2D: CanvasRenderingContext2D =
       |    canvas.getContext("2d").asInstanceOf[dom.CanvasRenderingContext2D] }
+      |
       |<a name="def-compact-down" class="nocode"></a>
       |def compactDown: List[Square] = {
       |  val maxY = squares.maxBy(_.y).y
@@ -31,6 +34,7 @@ object CommonCodeListing {
       |      for (square <- sortedByY)
       |        yield square.copy(y = square.y + (maxY - currMaxY)) }
       |    .toList }
+      |
       |<a name="def-compact-left" class="nocode"></a>
       |def compactLeft(squares: List[Square]): List[Square] =
       |  squares
@@ -42,15 +46,13 @@ object CommonCodeListing {
       |        acc :+ havingSameX.map(_.copy(x = acc.last.head.x + 1))
       |      else acc :+ havingSameX }
       |    .flatten
+      |
       |<a name="def-move-vertically" class="nocode"></a>
       |def moveVertically(deltaY: Int, color: Option[Color] = None): List[Square] =
       |  squares.map(s => s.copy(color = color.getOrElse(s.color), y = s.y + deltaY))
+      |
       |<a name="def-stack-above" class="nocode"></a>
       |def stackAbove(colors: List[Color]): List[Square] = {
-      |  assert(
-      |    squares.forall(s => s.x >= 0 || s.y >= 0),
-      |    "Stacking doesn't work with negative coords!")
-      |
       |  val minY = squares.minBy(_.y).y
       |  val minYRequired = colors.size
       |  val overlapY = if (minYRequired > minY) minYRequired - minY else 0
@@ -62,12 +64,9 @@ object CommonCodeListing {
       |    bottomSquares.moveVertically(-deltaY, Some(c)) }
       |
       |  stacked ++ liftedSquares }
+      |
       |<a name="def-stack-below" class="nocode"></a>
       |def stackBelow(colors: List[Color]): List[Square] = {
-      |  assert(
-      |    squares.forall(s => s.x >= 0 || s.y >= 0),
-      |    "Stacking doesn't work with negative coords!")
-      |
       |  val topSquares = squares.groupBy(_.x).map(_._2.maxBy(_.y)).toList
       |
       |  val stacked = colors.flatMap { c =>
@@ -75,12 +74,9 @@ object CommonCodeListing {
       |    topSquares.moveVertically(deltaY, Some(c)) }
       |
       |  stacked ++ squares }
+      |
       |<a name="def-stack-above-previous-if-same-color" class="nocode"></a>
       |def stackAbovePreviousIfSameColor(): List[Square] = {
-      |  assert(
-      |    squares.groupBy(_.y).size == 1,
-      |    "Stacking same color only supports squares with same Y value")
-      |
       |  val stackedByColor = squares
       |    .sortBy(_.x)
       |    .foldLeft(List.empty[Square]) { case (acc, square) =>

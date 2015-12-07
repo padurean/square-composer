@@ -36,7 +36,6 @@ object SquareComposer {
         DomRenderer.renderCommonCode("Appendix:", "Common Code", commonCode))
 
       dom.onkeydown = { (e: dom.KeyboardEvent) =>
-        Console.println("Caca maca")
         for (t <- Transformations.definitions.find(_.uid == SquareComposer.state)) {
           if (e.keyCode == KeyCode.left && t.prevUid.isDefined) {
             Effects.drawForUid(t.prevUid.get, mainDiv, drawOutputFigure = false)  }
