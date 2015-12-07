@@ -12,7 +12,7 @@ footer { margin-top: 0; padding-top: 0; color: #5e666e; }
 footer * { font-size: 0.85rem; }
 #purecore-footer-link { margin-left: .35rem; color: #008b8b; font-family: "Merriweather", "PT Serif", Georgia, "Times New Roman", serif; }
 .purecore-logotype-small { background-color: #333; color: #20b2aa; font-size: 1rem; padding-left: 0.25em; padding-right: 0.25em; }
-#main > .item { margin-top: 3.5rem; margin-bottom: 8.5rem; }
+#main > .item { margin-top: 1rem; margin-bottom: 8.5rem; }
 #main > .item > div > span { display:inline-block; margin-top: 0.5rem; color: #5e666e; font-size: 0.85rem; }
 #main > .item > h4 { padding: .5rem 0; margin-bottom: 0.75rem; }
 #main > .item > div { vertical-align: top; }
