@@ -12,7 +12,8 @@ object DomRenderer {
     t.transformations.map(render(t)(_))
 
   def render(
-    t: Transformation)(
+    t: Transformation,
+    version: Int = 0)(
     f: List[Square] => List[Square])
   : dom.Node = {
 
@@ -30,23 +31,35 @@ object DomRenderer {
       id := outputCanvasId,
       "width".attr := w.toString,
       "height".attr := h.toString)
-    val srcCodesString = t.sourceCodes.mkString("\n\n")
+    val srcCodeString = t.sourceCodes(version)
+    val runVersionJs = "parseInt(document.getElementById('transformation-version').value)"
     val onClickRunCb =
-      s"ro.purecore.squarecomposer.Effects().drawForUid('${t.uid}', document.getElementById('main')); PR.prettyPrint(); return false;"
+      s"ro.purecore.squarecomposer.Effects().drawForUid('${t.uid}', document.getElementById('main'), $runVersionJs, true); return false;"
     val item =
       div(`class` := "item")(
         h4(span(`class` := "section-no")(t.uid), t.name),
         div(inCanvas),
         div(`class` := "snippetWrapper")(
           div(`class` := "snippet")(
-            pre(`class` := "prettyprint lang-scala")(srcCodesString),
+            pre(`class` := "prettyprint lang-scala")(srcCodeString),
             div(`class` := "item-actions-box")(
+              if (t.sourceCodes.size > 1) {
               div(`class` := "item-versions-box")(
-                select(id := "item-versions")(
-                  for (sci <- t.sourceCodes.indices) yield {
-                    option(id := s"item-version-$sci", value := sci)(s"Version-$sci") } )),
-              div(a(href := "#", onclick := onClickRunCb)(span("Run!"))))
-          )),
+                for (v <- t.sourceCodes.indices) yield {
+                  val currCb =
+                    s"document.getElementById('transformation-version').value = $v; ro.purecore.squarecomposer.Effects().drawForUid('${t.uid}', document.getElementById('main'), $v, false); return false;"
+                  val versionBtnClass = if (v != version) "blue" else "blue selected"
+                  div(
+                    `class` := "butoneWrapper")(
+                    a(`class` := versionBtnClass, href := "#", onclick := currCb, title := s"Version #${v+1} (TIP: key ${v+1})")(span(s"V${v+1}"))) }
+
+              ) } else "",
+              div(
+                `class` := "butoneWrapper",
+                id := "run-btn")(
+                a(href := "#", onclick := onClickRunCb, title := "Run, Forrest! RUN! :)")(span("Run!"))))
+          ),
+        input(`type` := "hidden", name := "transformation-version", id := "transformation-version", `class` := "transformation-version", value := version.toString)),
         div(outCanvas)
       )
       .render
@@ -61,16 +74,16 @@ object DomRenderer {
 
     val onClickPrevCb = t.prevUid
       .map( prevUid =>
-        s"ro.purecore.squarecomposer.Effects().drawForUid('$prevUid', document.getElementById('main'), false); return false;")
+        s"ro.purecore.squarecomposer.Effects().drawForUid('$prevUid', document.getElementById('main'), 0, false); return false;")
       .getOrElse("return false;")
     val onClickNextCb = t.nextUid
       .map( nextUid =>
-        s"ro.purecore.squarecomposer.Effects().drawForUid('$nextUid', document.getElementById('main'), false); return false;")
+        s"ro.purecore.squarecomposer.Effects().drawForUid('$nextUid', document.getElementById('main'), 0, false); return false;")
       .getOrElse("return false;")
     item.appendChild(
       div(id := "goto-box")(
-        a(id := "goto-prev", href := "#", onclick := onClickPrevCb)(raw("&lt;&lt;")),
-        a(id := "goto-next", href := "#", onclick := onClickNextCb)(raw("&gt;&gt;")))
+        a(id := "goto-prev", href := "#", title := "< Previous Transformation", onclick := onClickPrevCb)(raw("&lt;")),
+        a(id := "goto-next", href := "#", title := "Next Transformation >", onclick := onClickNextCb)(raw("&gt;")))
       .render)
 
     item }

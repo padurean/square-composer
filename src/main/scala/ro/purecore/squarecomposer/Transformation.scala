@@ -10,8 +10,5 @@ case class Transformation(
   sourceCodes: List[String],
   functions: List[String]) {
 
-  def map(): List[List[Square]] = transformations.map(_(input))
-
-  def map(f: List[Square] => List[Square]): List[Square] =
-    transformations.head(input)
+  def map(v: Int):List[Square] = transformations(v)(input)
 }

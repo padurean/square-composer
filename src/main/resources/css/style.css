@@ -34,41 +34,25 @@ pre .pun { color: #67737e; }
 pre .str { color: #cc6600; }
 pre .kwd { color: #71a93d; }
 pre .lit { color: #c79f05; }
-.item-actions-box { margin-top: 0.75rem; }
-.item-versions-box {
-    width: auto;
-    height: 1.5rem;
-    overflow: hidden;
-    background: url('../images/down_arrow_select.png') no-repeat right #1c1c1c;
-    background-size: 1.5rem 1.5rem;
-    margin-right: 0.5rem;}
+.item-versions-box { width: auto; height: 1.5rem; margin-top: 1px; }
+.item-versions-box > div.butoneWrapper { margin-right: 1px; }
 
-select::-ms-expand { display: none; }
-select {
-    color: #7b8c9d;
-    background: transparent;
-    width: auto;
-    padding: 0.2rem 3rem 0.25em 0.5em ;
-    font-size: 0.75rem;
-    line-height: 1;
-    border: 0;
-    border-radius: 0;
-    height: 1.5rem;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;  /*IMPORTANT*/}
-select:hover { color: #99a6b3; }
-select:focus { color: #678cb1; }
-
-.item-actions-box > div { display: inline-block; vertical-align: middle; }
-.item-actions-box > div > a { width: 3.5rem; height: 1.65rem; vertical-align: middle; display: table; text-align: center; font-weight: normal; background: #1c1c1c; color: #71a93d; text-transform: uppercase; }
-.item-actions-box > div > a:hover { color: #cc6600; background-color: #161616; }
-.item-actions-box > div > a > span { display: table-cell; vertical-align: middle; }
+div.butoneWrapper { display: inline-block; vertical-align: middle; }
+div.butoneWrapper > a { width: 3.5rem; height: 1.55rem; vertical-align: middle; display: table; text-align: center; font-weight: normal; background: #324b1b; color: #649636; text-transform: uppercase; }
+div.butoneWrapper > a:hover,
+div.butoneWrapper > a:active { background: #4d2600; color: #b35900; }
+div.butoneWrapper > a > span { display: table-cell; vertical-align: middle; font-size: 0.8rem; }
+div.butoneWrapper > a.blue { color: #67737E; background-color: #1c1c1c; }
+div.butoneWrapper > a.blue:hover,
+div.butoneWrapper > a.selected { background-color: #333; color: #838c95; }
+div#run-btn { margin-top: 1rem; }
 
 #goto-box { text-align: center; margin-top: 2rem; margin-bottom: 0; }
-#goto-box > a { display: inline-block; width: auto; text-align: center; padding: 0.5rem 2rem; background: #1c1c1c; color: #5e666e; font-size: 1rem; }
+#goto-box > a { display: inline-block; width: auto; text-align: center; padding: 0.5rem 2rem; background: #1c1c1c; color: #5e666e; font-size: 1.15rem; }
 #goto-box > a:hover { color: #678cb1; background-color: #161616; }
 #goto-box > a#goto-prev { margin-right: 3rem; }
+
+
 
 /* >>> Media Queries */
 /* Smartphones (portrait and landscape) ----------- */

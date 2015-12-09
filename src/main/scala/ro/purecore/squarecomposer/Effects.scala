@@ -10,11 +10,17 @@ import scala.scalajs.js.annotation.JSExport
 object Effects {
 
   @JSExport
-  def drawForUid(uid: String, parentDiv: html.Div, drawOutputFigure: Boolean = true): Unit = {
+  def drawForUid(
+    uid: String,
+    parentDiv: html.Div,
+    version: Int = 0,
+    drawOutputFigure: Boolean = true)
+  : Unit = {
     for (t <- Transformations.definitions.find(_.uid == uid)) {
       renderFirstTransformationAndDraw(
         parentDiv,
         t,
+        version,
         replace = true,
         drawOutputFigure)
 
@@ -25,13 +31,12 @@ object Effects {
   def renderFirstTransformationAndDraw(
     parentDiv: html.Div,
     t: Transformation,
+    version: Int = 0,
     replace: Boolean = false,
     drawOutputFigure: Boolean = false)
   : Unit = {
-    val itemDiv =
-      DomRenderer.render(t)(t.transformations.head) // TODO OGG: mind the head - that's why it's called renderFIRSTTransformationAndDraw
-    val lastChild = parentDiv.lastChild // TODO OGG: this is the common code; maybe you do it by just replacing item's content
-    // to avoid re-appending also the common code
+    val itemDiv = DomRenderer.render(t, version)(t.transformations(version))
+    val lastChild = parentDiv.lastChild
     if (replace) {
       parentDiv.removeChild(parentDiv.firstChild)
       parentDiv.removeChild(parentDiv.firstChild) }
@@ -46,11 +51,12 @@ object Effects {
         DomRenderer.outputCanvasId)
 
     draw(
-      t, drawOutputFigure)(
+      t, version, drawOutputFigure)(
       inCanvas.getContext2D, outCanvas.getContext2D) }
 
   def draw(
     t: Transformation,
+    version: Int,
     drawOutputFigure: Boolean)(
     in2DContext: CanvasRenderingContext2D,
     out2DContext: CanvasRenderingContext2D)
@@ -59,7 +65,7 @@ object Effects {
     draw(t.input, 0, 0)(in2DContext)
     drawBg(t.input, 0, 0)(out2DContext)
     if (drawOutputFigure)
-      draw(t.map(t.transformations.head), 0, 0)(out2DContext) }
+      draw(t.map(version), 0, 0)(out2DContext) }
 
   def draw (
     squares: List[Square],

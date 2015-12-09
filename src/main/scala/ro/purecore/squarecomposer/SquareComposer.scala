@@ -1,7 +1,7 @@
 package ro.purecore.squarecomposer
 
 import org.scalajs.dom
-import org.scalajs.dom.ext.KeyCode
+import org.scalajs.dom.ext.KeyCode._
 import org.scalajs.dom.html
 import ro.purecore.squarecomposer.CommonCodeListing._
 
@@ -18,8 +18,15 @@ object SquareComposer {
   @JSExport
   def main(logoCanvas: html.Canvas, mainDiv: html.Div): Unit = {
 
-    def run() = {
+    def transformationVersion(d: html.Div): Int = d
+      .getElementsByClassName("transformation-version")
+      .item(0)
+      .attributes
+      .getNamedItem("value")
+      .value
+      .toInt
 
+    def run() = {
       Effects.draw(
         Transformations.logotype,
         0,
@@ -30,19 +37,55 @@ object SquareComposer {
 
       Effects.renderFirstTransformationAndDraw(
         mainDiv,
-        Transformations.definitions.head)
+        Transformations.definitions.head,
+        0)
 
       mainDiv.appendChild(
         DomRenderer.renderCommonCode("Appendix:", "Common Code", commonCode))
 
       dom.onkeydown = { (e: dom.KeyboardEvent) =>
         for (t <- Transformations.definitions.find(_.uid == SquareComposer.state)) {
-          if (e.keyCode == KeyCode.left && t.prevUid.isDefined) {
-            Effects.drawForUid(t.prevUid.get, mainDiv, drawOutputFigure = false)  }
-          else if (e.keyCode == KeyCode.right && t.nextUid.isDefined) {
-            Effects.drawForUid(t.nextUid.get, mainDiv, drawOutputFigure = false) }
-          else if (e.keyCode == KeyCode.enter) {
-            Effects.drawForUid(t.uid, mainDiv, drawOutputFigure = true) } } }
+          if (e.keyCode == left && t.prevUid.isDefined) {
+            Effects.drawForUid(
+              t.prevUid.get,
+              mainDiv,
+              version = 0,
+              drawOutputFigure = false)  }
+          else if (e.keyCode == right && t.nextUid.isDefined) {
+            Effects.drawForUid(
+              t.nextUid.get,
+              mainDiv,
+              version = 0,
+              drawOutputFigure = false) }
+          else if (e.keyCode == enter) {
+            Effects.drawForUid(
+              t.uid,
+              mainDiv,
+              version = transformationVersion(mainDiv),
+              drawOutputFigure = true) }
+          else if (e.keyCode == escape) {
+            Effects.drawForUid(
+              t.uid,
+              mainDiv,
+              version = transformationVersion(mainDiv),
+              drawOutputFigure = false) }
+          else {
+            val numKeys = List(num1, num2, num3, num4, num5)
+            val isNumeric = numKeys.contains(e.keyCode)
+            if (isNumeric) {
+              val v = e.keyCode match {
+                case `num1` => 0
+                case `num2` => 1
+                case `num3` => 2
+                case `num4` => 3
+                case `num5` => 4
+              }
+              if (t.sourceCodes.indices.contains(v)) {
+                Effects.drawForUid(
+                  t.uid,
+                  mainDiv,
+                  version = v,
+                  drawOutputFigure = false) } } } } }
     }
 
     dom.setTimeout(() => run(), 50) }

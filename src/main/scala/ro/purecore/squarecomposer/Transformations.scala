@@ -106,10 +106,14 @@ object Transformations {
       name = "Transformation",
       input = initialFigure0,
       transformations = List(
-        (squares: List[Square]) => squares.map(_.copy(color = blue))
+        (squares: List[Square]) => squares.map(_.copy(color = blue)),
+        (squares: List[Square]) => squares
+          .map(s => if (s.color != blue) s.copy(color = yellow) else s)
       ),
       sourceCodes = List(
-        """squares.map(_.copy(color = blue))"""
+        """squares.map(_.copy(color = blue))""",
+        """squares.map(s => if (s.color != blue) s.copy(color = blue) else s)"""
+          .stripMargin
       ),
       functions = List.empty[String]),
 
@@ -120,10 +124,12 @@ object Transformations {
       name = "Rejection",
       input = initialFigure0,
       transformations = List(
-        (squares: List[Square]) => squares.filter(_.color == blue).compactDown
+        (squares: List[Square]) => squares.filter(_.color == blue).compactDown,
+        (squares: List[Square]) => squares.filter(_.color == orange)
       ),
       sourceCodes = List(
-        """squares.filter(_.color == blue).compactDown"""
+        """squares.filter(_.color == blue).compactDown""",
+        """squares.filter(_.color == orange)"""
       ),
       functions = List("compactDown")),
 
