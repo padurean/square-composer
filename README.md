@@ -19,11 +19,16 @@ Enjoy and feel free to propose new solutions!
 Run `sbt fullOptJS` and open up `index-opt.html` for an optimized (~200kb) version
 of the final application, useful for final publication.
 
-## Add a new solution to an existing transformation
+## Contribute!
+
+Fork this repo, do your changes/additions and create a PullRequest to get them
+also into this repo & published [here](http://purecore.ro/square-composer).
+
+### Add a new solution to an existing transformation
 
 Just add a new function to an existing `Transformation` from the `ro.purecore.squarecomposer.Transformations.definitions` list.
 
-## Add a new transformation
+### Add a new transformation
 
 Just add a new `Transformation` to the `ro.purecore.squarecomposer.Transformations.definitions` list.
 
