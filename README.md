@@ -22,7 +22,10 @@ of the final application, useful for final publication.
 ## Contribute!
 
 Fork this repo, do your changes/additions and create a PullRequest to get them
-also into this repo & published [here](http://purecore.ro/square-composer).
+also back here.
+
+Your changes will also be published [here](http://purecore.ro/square-composer),
+as an updated version of _SquareComposer_.
 
 ### Add a new solution to an existing transformation
 
