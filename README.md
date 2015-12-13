@@ -35,4 +35,4 @@ Just add a new function to an existing `Transformation` from the `ro.purecore.sq
 
 Just add a new `Transformation` to the `ro.purecore.squarecomposer.Transformations.definitions` list.
 
-TIP: Use an existing instantiation one as blueprint - code should be self-explanatory.
+TIP: Use an existing one as blueprint - code should be self-explanatory.
