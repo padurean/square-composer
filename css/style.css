@@ -1,0 +1,128 @@
+html, body { font-size: 1rem; }
+body { margin: 0; font-family: 'Arial Narrow', sans-serif; color: #9199a1; background-color: #222; }
+header, #main, footer { text-align: center; padding: 2rem; margin-left: auto; margin-right: auto; }
+header > h2 { margin-bottom: 0; font-size: 26px; }
+header > h2 > canvas { display: inline-block; margin: 0; border: none; vertical-align: top; }
+header > h2 > span { vertical-align: top; font-size: 26px; }
+header > h4 { font-size: 16px; margin-top: .5rem; }
+header > h4 > a { font-size: 16px; }
+#main { padding-top: 0; }
+h4 { font-weight: normal; color: #5e666e; }
+footer { margin-top: 0; padding-top: 0; color: #5e666e; }
+footer * { font-size: 0.85rem; }
+#purecore-footer-link { margin-left: .35rem; color: #008b8b; font-family: "Merriweather", "PT Serif", Georgia, "Times New Roman", serif; }
+.purecore-logotype-small { background-color: #333; color: #20b2aa; font-size: 1rem; padding-left: 0.25em; padding-right: 0.25em; }
+#main > .item { margin-top: 1rem; margin-bottom: 8.5rem; }
+#main > .item > div > span { display:inline-block; margin-top: 0.5rem; color: #5e666e; font-size: 0.85rem; }
+#main > .item > h4 { padding: .5rem 0; margin-bottom: 0.75rem; }
+#main > .item > div { vertical-align: top; }
+.snippetWrapper { width: auto; margin: 0 auto; }
+.snippetWrapper > .snippet { width: auto; }
+.snippet { width: auto; overflow: auto; margin: .5rem auto; }
+.snippet * { font-size: 0.75rem; }
+.snippet > .prettyprint { background-color: #1c1c1c; text-align: left; padding: .75rem;}
+.snippet > pre { display: inline-block; }
+.jump-to-def { display: inline-block; font-size: 0.85rem; color: #5e666e; margin-top: .5rem; margin-right: 0.75rem; }
+.link-to-def { display: inline-block; font-size: 0.85rem; color: #7b8c9d; margin-top: .5rem; margin-right: 0.55rem;}
+.link-to-def > pre { display: inline-block; }
+canvas { margin: .5rem 0; }
+a { text-decoration: none; color: #7b8c9d; }
+pre, code { font-family: Hack, monospace; font-size: 0.75rem; line-height: 1rem; padding: 0; margin: 0; }
+.section-no { color: #5e666e; margin-right: .5rem; }
+pre .pln { color: #9199a1; }
+pre .pun { color: #67737e; }
+pre .str { color: #cc6600; }
+pre .kwd { color: #71a93d; }
+pre .lit { color: #c79f05; }
+.item-versions-box { width: auto; height: auto; margin-top: 1px; }
+.item-versions-box > div.butoneWrapper { margin-right: 1px; }
+
+div.butoneWrapper { display: inline-block; vertical-align: middle; }
+div.butoneWrapper > a { width: 3rem; height: 2rem; vertical-align: middle; display: table; text-align: center; font-weight: normal; background: #324b1b; color: #649636; text-transform: uppercase; }
+div.butoneWrapper > a:hover,
+div.butoneWrapper > a:active { background: #4d2600; color: #b35900; }
+div.butoneWrapper > a > span { display: table-cell; vertical-align: middle; font-size: 0.8rem; }
+div.butoneWrapper > a.blue { color: #67737E; background-color: #1c1c1c; }
+div.butoneWrapper > a.blue:hover,
+div.butoneWrapper > a.selected { background-color: #333; color: #838c95; }
+div#run-btn > a { margin: 1rem 0 .15rem 0; width: 5rem; }
+
+#goto-box { text-align: center; margin-top: 2rem; margin-bottom: 0; }
+#goto-box > a { display: inline-block; width: auto; text-align: center; padding: 0.5rem 2rem; background: #1c1c1c; color: #5e666e; font-size: 1.15rem; }
+#goto-box > a:hover { color: #678cb1; background-color: #161616; }
+#goto-box > a#goto-prev { margin-right: 3rem; }
+
+
+
+/* >>> Media Queries */
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    /* STYLES GO HERE */
+    header, #main, footer, #goto-box { text-align: left; }
+    header > h2, header > h2 > span { font-size: 15px; }
+    header > h4, header > h4 > a { font-size: 10px; }
+    .item > h4, .item > h4 * { font-size: 0.7rem; }
+    footer * { font-size: 0.55rem; }
+    .snippetWrapper, .snippet { width: auto; }
+    .snippet * { font-size: 1rem; }
+}
+/* Smartphones (landscape) ----------- */
+@media only screen and (min-width : 321px) { /* STYLES GO HERE */ }
+/* Smartphones (portrait) ----------- */
+@media only screen and (max-width : 320px) { /* STYLES GO HERE */ }
+/* iPads (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+    /* STYLES GO HERE */
+    header, #main, footer, #goto-box { text-align: center; }
+    header > h2, header > h2 > span { font-size: 26px; }
+    header > h4, header > h4 > a { font-size: 16px; }
+    .item > h4, .item > h4, h4 * { font-size: 1rem; }
+    footer * { font-size: 0.55rem; }
+    .snippetWrapper, .snippet { width: 75%; }
+    .snippet * { font-size: 1rem; }
+}
+/* iPads (landscape) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) { /* STYLES GO HERE */ }
+/* iPads (portrait) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) { /* STYLES GO HERE */ }
+/* Desktops and laptops ----------- */
+@media only screen and (min-width : 1224px) {
+    /* STYLES GO HERE */
+    header, #main, footer, #goto-box { text-align: center; }
+    header > h2, header > h2 > span { font-size: 26px; }
+    header > h4, header > h4 > a { font-size: 16px; }
+    .item > h4, .item > h4, h4 * { font-size: 1rem; }
+    footer * { font-size: 0.85rem; }
+    .snippetWrapper, .snippet { width: 50%; }
+    .snippet * { font-size: 0.75rem; }
+}
+/* Large screens ----------- */
+@media only screen and (min-width : 1824px) { /* STYLES GO HERE */ }
+/* iPhone 5 (portrait &amp; landscape)----------- */
+@media only screen and (min-device-width : 320px) and (max-device-width : 568px) and (-webkit-min-device-pixel-ratio : 2){ /* STYLES GO HERE */ }
+/* iPhone 5 (landscape)----------- */
+@media only screen and (min-device-width : 320px) and (max-device-width : 568px) and (orientation : landscape) and (-webkit-min-device-pixel-ratio : 2){ /* STYLES GO HERE */ }
+/* iPhone 5 (portrait)----------- */
+@media only screen and (min-device-width : 320px) and (max-device-width : 568px) and (orientation : portrait) and (-webkit-min-device-pixel-ratio : 2) { /* STYLES GO HERE */ }
+/* iPhone 6 (portrait &amp; landscape)----------- */
+@media only screen and (min-device-width : 375px) and (max-device-width : 667px) and (-webkit-min-device-pixel-ratio : 2){ /* STYLES GO HERE */ }
+/* iPhone 6 (landscape)----------- */
+@media only screen and (min-device-width : 375px) and (max-device-width : 667px) and (orientation : landscape) and (-webkit-min-device-pixel-ratio : 2){ /* STYLES GO HERE */ }
+/* iPhone 6 (portrait)----------- */
+@media only screen and (min-device-width : 375px) and (max-device-width : 667px) and (orientation : portrait) and (-webkit-min-device-pixel-ratio : 2){ /* STYLES GO HERE */ }
+/* iPhone 6 plus (portrait &amp; landscape)----------- */
+@media only screen and (min-device-width : 414px) and (max-device-width : 736px) and (-webkit-min-device-pixel-ratio : 3){
+    /* STYLES GO HERE */
+    header, #main, footer, #goto-box { text-align: left; }
+    header > h2, header > h2 > span { font-size: 20px; }
+    header > h4, header > h4 > a { font-size: 12px; }
+    .item > h4, .item > h4 * { font-size: 0.85rem; }
+    footer * { font-size: 0.55rem; }
+    .snippetWrapper, .snippet { width: auto; }
+    .snippet * { font-size: 1.05rem; }
+}
+/* iPhone 6 plus (landscape)----------- */
+@media only screen and (min-device-width : 414px) and (max-device-width : 736px) and (orientation : landscape) and (-webkit-min-device-pixel-ratio : 3){ /* STYLES GO HERE */ }
+/* iPhone 6 plus (portrait)----------- */
+@media only screen and (min-device-width : 414px) and (max-device-width : 736px) and (orientation : portrait) and (-webkit-min-device-pixel-ratio : 3){ /* STYLES GO HERE */ }
+/* <<< Media Queries */
