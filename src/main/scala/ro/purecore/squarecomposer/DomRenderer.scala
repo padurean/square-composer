@@ -32,6 +32,8 @@ object DomRenderer {
       "width".attr := w.toString,
       "height".attr := h.toString)
     val srcCodeString = t.sourceCodes(version)
+    // TODO OGG: try to replace as much as possible these JS codes in strings with real Scala functions
+    // TODO OGG: fix the layout: scrolling wider code should not also scroll versions and run btns
     val runVersionJs = "parseInt(document.getElementById('transformation-version').value)"
     val onClickRunCb =
       s"ro.purecore.squarecomposer.Effects().drawForUid('${t.uid}', document.getElementById('main'), $runVersionJs, true); return false;"

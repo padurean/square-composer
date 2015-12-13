@@ -50,13 +50,15 @@ object SquareComposer {
               t.prevUid.get,
               mainDiv,
               version = 0,
-              drawOutputFigure = false)  }
+              drawOutputFigure = false,
+              scrollToTop = true)  }
           else if (e.keyCode == right && t.nextUid.isDefined) {
             Effects.drawForUid(
               t.nextUid.get,
               mainDiv,
               version = 0,
-              drawOutputFigure = false) }
+              drawOutputFigure = false,
+              scrollToTop = true) }
           else if (e.keyCode == enter) {
             Effects.drawForUid(
               t.uid,

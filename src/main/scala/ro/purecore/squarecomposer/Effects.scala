@@ -14,7 +14,8 @@ object Effects {
     uid: String,
     parentDiv: html.Div,
     version: Int = 0,
-    drawOutputFigure: Boolean = true)
+    drawOutputFigure: Boolean = true,
+    scrollToTop: Boolean = false)
   : Unit = {
     for (t <- Transformations.definitions.find(_.uid == uid)) {
       renderFirstTransformationAndDraw(
@@ -24,7 +25,8 @@ object Effects {
         replace = true,
         drawOutputFigure)
 
-    scalajs.js.eval("PR.prettyPrint(); window.scrollTo(0, 0);")
+    val scrollToTopJs = if (scrollToTop) " window.scrollTo(0, 0);" else ""
+    scalajs.js.eval(s"PR.prettyPrint();$scrollToTopJs")
     SquareComposer.state = t.uid } }
 
   @JSExport
