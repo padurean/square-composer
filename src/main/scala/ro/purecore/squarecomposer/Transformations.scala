@@ -115,7 +115,14 @@ object Transformations {
         """squares.map(s => if (s.color != blue) s.copy(color = blue) else s)"""
           .stripMargin
       ),
-      functions = List.empty[String]),
+      functions = List(
+        FunctionDoc(
+          "map",
+          Some("http://www.scala-lang.org/api/current/index.html#scala.collection.immutable.List@map[B](f:A=>B):List[B]")),
+        FunctionDoc(
+          "copy",
+          Some("http://alvinalexander.com/scala/scala-case-class-copy-method-example")))
+    ),
 
     Transformation(
       uid = "0.2",
@@ -131,7 +138,11 @@ object Transformations {
         """squares.filter(_.color == blue).compactDown""",
         """squares.filter(_.color == orange)"""
       ),
-      functions = List("compactDown")),
+      functions = List(
+        FunctionDoc("compactDown"),
+        FunctionDoc(
+          "filter",
+          Some("http://www.scala-lang.org/api/current/index.html#scala.collection.immutable.List@filter(p:A=>Boolean):Repr")))),
 
     Transformation(
       uid = "0.3",
@@ -146,7 +157,7 @@ object Transformations {
       sourceCodes = List(
         """squares.filter(_.color == blue).compactDown.stackAbove(List(orange))"""
       ),
-      functions = List("compactDown", "stackAbove")),
+      functions = List(FunctionDoc("compactDown"), FunctionDoc("stackAbove"))),
 
     Transformation(
       uid = "0.4",
@@ -161,7 +172,7 @@ object Transformations {
       sourceCodes = List(
         """squares.filter(_.color == blue).compactDown.stackAbove(List(orange, blue))"""
       ),
-      functions = List("compactDown", "stackAbove")),
+      functions = List(FunctionDoc("compactDown"), FunctionDoc("stackAbove"))),
 
     Transformation(
       uid = "1.1",
@@ -184,7 +195,7 @@ object Transformations {
           |  .stackAbove(List(orange))"""
           .stripMargin
       ),
-      functions = List.empty[String]),
+      functions = List.empty[FunctionDoc]),
 
     Transformation(
       uid = "1.2",
@@ -213,7 +224,7 @@ object Transformations {
           |  .toList"""
           .stripMargin
       ),
-      functions = List.empty[String]),
+      functions = List.empty[FunctionDoc]),
 
     Transformation(
       uid = "1.3",
@@ -234,7 +245,7 @@ object Transformations {
           |  .stackBelow(List(brown))"""
           .stripMargin
       ),
-      functions = List("moveVertically", "stackBelow")),
+      functions = List(FunctionDoc("moveVertically"), FunctionDoc("stackBelow"))),
 
     Transformation(
       uid = "1.4",
@@ -249,7 +260,7 @@ object Transformations {
       sourceCodes = List(
         """squares.map(square => square.copy(color = orange))"""
       ),
-      functions = List.empty[String]),
+      functions = List.empty[FunctionDoc]),
 
     Transformation(
       uid = "2.1",
@@ -268,6 +279,6 @@ object Transformations {
           |  .map(s => if (s.color == blue) s.copy(color = brown) else s)"""
           .stripMargin
       ),
-      functions = List("stackAbovePreviousIfSameColor"))
+      functions = List(FunctionDoc("stackAbovePreviousIfSameColor")))
   )
 }

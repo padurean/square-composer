@@ -34,18 +34,18 @@ pre .pun { color: #67737e; }
 pre .str { color: #cc6600; }
 pre .kwd { color: #71a93d; }
 pre .lit { color: #c79f05; }
-.item-versions-box { width: auto; height: 1.5rem; margin-top: 1px; }
+.item-versions-box { width: auto; height: auto; margin-top: 1px; }
 .item-versions-box > div.butoneWrapper { margin-right: 1px; }
 
 div.butoneWrapper { display: inline-block; vertical-align: middle; }
-div.butoneWrapper > a { width: 3.5rem; height: 1.55rem; vertical-align: middle; display: table; text-align: center; font-weight: normal; background: #324b1b; color: #649636; text-transform: uppercase; }
+div.butoneWrapper > a { width: 3rem; height: 2rem; vertical-align: middle; display: table; text-align: center; font-weight: normal; background: #324b1b; color: #649636; text-transform: uppercase; }
 div.butoneWrapper > a:hover,
 div.butoneWrapper > a:active { background: #4d2600; color: #b35900; }
 div.butoneWrapper > a > span { display: table-cell; vertical-align: middle; font-size: 0.8rem; }
 div.butoneWrapper > a.blue { color: #67737E; background-color: #1c1c1c; }
 div.butoneWrapper > a.blue:hover,
 div.butoneWrapper > a.selected { background-color: #333; color: #838c95; }
-div#run-btn { margin-top: 1rem; }
+div#run-btn > a { margin: 1rem 0 .15rem 0; width: 5rem; }
 
 #goto-box { text-align: center; margin-top: 2rem; margin-bottom: 0; }
 #goto-box > a { display: inline-block; width: auto; text-align: center; padding: 0.5rem 2rem; background: #1c1c1c; color: #5e666e; font-size: 1.15rem; }

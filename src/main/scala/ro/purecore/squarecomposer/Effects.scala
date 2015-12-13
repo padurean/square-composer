@@ -24,7 +24,7 @@ object Effects {
         replace = true,
         drawOutputFigure)
 
-    scalajs.js.eval("PR.prettyPrint();")
+    scalajs.js.eval("PR.prettyPrint(); window.scrollTo(0, 0);")
     SquareComposer.state = t.uid } }
 
   @JSExport

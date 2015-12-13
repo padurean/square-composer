@@ -66,9 +66,11 @@ object DomRenderer {
 
     if (t.functions.nonEmpty) {
       item.appendChild(div(`class` := "jump-to-def")("Jump to function:").render)
-        for (func <- t.functions) {
+        for (funcDocu <- t.functions) {
+          val (docUrl, linkTarget) = funcDocu.docUrl
+            .fold(s"#def-${ dashify(funcDocu.name)}", "")((_, "_blank"))
           val linkToDef =
-            a(`class` := "link-to-def", href := s"#def-${ snakify(func) }")(pre (func))
+            a(`class` := "link-to-def", target := linkTarget, href := docUrl)(pre (funcDocu.name))
           item.appendChild(linkToDef.render) }
     }
 
