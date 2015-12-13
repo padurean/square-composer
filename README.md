@@ -10,7 +10,7 @@ Just open `localhost:12345/target/scala-2.11/classes/index-dev.html` in your bro
 You can then edit the application and see the updates be sent live to the browser
 without needing to refresh the page.
 
-You can also take a look at this [live demo](http://purecore.ro/square-composer.html).
+You can also take a look at this [live demo](http://purecore.ro/square-composer).
 
 Enjoy and feel free to propose new solutions!
 
