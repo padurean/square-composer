@@ -1,4 +1,4 @@
-# SquareComposer - Scala solutions for [CubeComposer](http://david-peter.de/cube-composer) 
+# [SquareComposer](http://purecore.ro/square-composer) - Scala solutions for [CubeComposer](http://david-peter.de/cube-composer) 
 
 ## Get started
 
@@ -35,4 +35,4 @@ Just add a new function to an existing `Transformation` from the `ro.purecore.sq
 
 Just add a new `Transformation` to the `ro.purecore.squarecomposer.Transformations.definitions` list.
 
-TIP: Use an existing one as blueprint - code should be self-explanatory.
+_TIP_: Use an existing one as blueprint - code should be self-explanatory.
