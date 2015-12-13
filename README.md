@@ -1,5 +1,7 @@
 # [SquareComposer](http://purecore.ro/square-composer) - Scala solutions for [CubeComposer](http://david-peter.de/cube-composer) 
 
+[![Join the chat at https://gitter.im/padurean/square-composer](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/padurean/square-composer?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 ## Get started
 
 To get started, run `sbt ~fastOptJS` in this example project.
