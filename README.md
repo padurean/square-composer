@@ -19,8 +19,12 @@ Enjoy and feel free to propose new solutions!
 Run `sbt fullOptJS` and open up `index-opt.html` for an optimized (~200kb) version
 of the final application, useful for final publication.
 
-## Add a new solution or a new transformation
+## Add a new solution to an existing transformation
 
-Just add a new `Transformation` instance to the `ro.purecore.squarecomposer.Transformations.definitions` list.
+Just add a new function to an existing `Transformation` from the `ro.purecore.squarecomposer.Transformations.definitions` list.
+
+## Add a new transformation
+
+Just add a new `Transformation` to the `ro.purecore.squarecomposer.Transformations.definitions` list.
 
 TIP: Use an existing instantiation one as blueprint - code should be self-explanatory.
