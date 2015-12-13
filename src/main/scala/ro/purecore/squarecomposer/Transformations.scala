@@ -108,7 +108,7 @@ object Transformations {
       transformations = List(
         (squares: List[Square]) => squares.map(_.copy(color = blue)),
         (squares: List[Square]) => squares
-          .map(s => if (s.color != blue) s.copy(color = yellow) else s)
+          .map(s => if (s.color != blue) s.copy(color = blue) else s)
       ),
       sourceCodes = List(
         """squares.map(_.copy(color = blue))""",
@@ -132,11 +132,11 @@ object Transformations {
       input = initialFigure0,
       transformations = List(
         (squares: List[Square]) => squares.filter(_.color == blue).compactDown,
-        (squares: List[Square]) => squares.filter(_.color == orange)
+        (squares: List[Square]) => squares.filter(_.color != orange).compactDown
       ),
       sourceCodes = List(
         """squares.filter(_.color == blue).compactDown""",
-        """squares.filter(_.color == orange)"""
+        """squares.filter(_.color != orange).compactDown"""
       ),
       functions = List(
         FunctionDoc("compactDown"),
